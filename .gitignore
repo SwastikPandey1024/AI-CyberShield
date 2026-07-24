@@ -1,0 +1,155 @@
+# ──────────────────────────────────────────────
+# Python
+# ──────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+*.whl
+*.manifest
+*.spec
+*.so
+
+# ──────────────────────────────────────────────
+# Virtual Environment
+# ──────────────────────────────────────────────
+.venv/
+venv/
+env/
+virtualenv/
+
+# ──────────────────────────────────────────────
+# Jupyter Notebooks
+# ──────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+poetry.lock
+
+# ──────────────────────────────────────────────
+# ML Artifacts & Model Checkpoints
+# ──────────────────────────────────────────────
+# Track directory structure but ignore actual model files
+ml/artifacts/models/*
+!ml/artifacts/models/.gitkeep
+ml/artifacts/metadata/*
+!ml/artifacts/metadata/.gitkeep
+ml/artifacts/*.pkl
+ml/artifacts/*.joblib
+ml/artifacts/*.h5
+ml/artifacts/*.pt
+ml/artifacts/*.onnx
+ml/artifacts/*.json
+*.checkpoint*
+*.ckpt
+
+# ──────────────────────────────────────────────
+# Datasets
+# ──────────────────────────────────────────────
+# Ignore all dataset files but track the directory structure.
+datasets/raw/*
+!datasets/raw/.gitkeep
+datasets/processed/*
+!datasets/processed/.gitkeep
+datasets/external/*
+!datasets/external/.gitkeep
+datasets/*.csv
+datasets/*.pcap
+datasets/*.parquet
+datasets/*.h5
+datasets/*.bin
+datasets/*.zip
+datasets/*.gz
+datasets/*.tar
+
+# ──────────────────────────────────────────────
+# Logs
+# ──────────────────────────────────────────────
+*.log
+*.log.*
+logs/
+!logs/.gitkeep
+
+# ──────────────────────────────────────────────
+# IDE / Editors
+# ──────────────────────────────────────────────
+.vscode/settings.json
+.vscode/*.code-snippets
+.vscode/tasks.json
+.vscode/launch.json
+.idea/
+*.iml
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+
+# ──────────────────────────────────────────────
+# Environment Variables
+# ──────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+.env.local
+.env.production
+.env.development
+
+# ──────────────────────────────────────────────
+# Testing
+# ──────────────────────────────────────────────
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+coverage.xml
+*.coverage
+*.coverage.*
+.cache/
+test-results/
+junit/
+junit.xml
+
+# ──────────────────────────────────────────────
+# Docker
+# ──────────────────────────────────────────────
+docker/.env
+docker-compose.override.yml
+
+# ──────────────────────────────────────────────
+# Operating System
+# ──────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ──────────────────────────────────────────────
+# Miscellaneous
+# ──────────────────────────────────────────────
+*.pyc
+*.bak
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+mypy_cache/
+dmypy.json
+dmypy_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+perf.tap
+.prof
+

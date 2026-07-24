@@ -1,0 +1,40 @@
+# ═══════════════════════════════════════════════
+# AI CyberShield — Code Owners
+# ═══════════════════════════════════════════════
+# Each line is a file pattern followed by one or more owners.
+# These owners are automatically requested for review when
+# someone opens a pull request that modifies the matched files.
+
+# Global owners (review everything by default)
+* @yourusername
+
+# Backend API & Services
+/backend/ @yourusername
+
+# Machine Learning Pipeline
+/ml/ @yourusername
+
+# Frontend Dashboard
+/frontend/ @yourusername
+
+# Documentation
+/docs/* @yourusername
+README.md @yourusername
+CHANGELOG.md @yourusername
+CONTRIBUTING.md @yourusername
+
+# Configuration
+/configs/ @yourusername
+.env.example @yourusername
+
+# CI/CD
+/.github/ @yourusername
+
+# Docker
+/docker/ @yourusername
+Dockerfile @yourusername
+docker-compose.yml @yourusername
+
+# Root configuration
+/pyproject.toml @yourusername
+/Makefile @yourusername

@@ -1,0 +1,30 @@
+# ═══════════════════════════════════════════════
+# AI CyberShield — Model Configuration
+# ═══════════════════════════════════════════════
+# Defines ML model parameters, artifact paths, and serving configuration.
+
+model:
+  name: ${MODEL_NAME}
+  type: ${MODEL_TYPE}
+  version: ${MODEL_VERSION}
+
+artifact_paths:
+  model: ${MODEL_ARTIFACT_PATH}
+  scaler: ${SCALER_ARTIFACT_PATH}
+  encoder: ${ENCODER_ARTIFACT_PATH}
+  feature_selector: ${FEATURE_SELECTOR_PATH}
+  metadata: ${MODEL_METADATA_PATH}
+
+parameters:
+  random_state: ${RANDOM_STATE}
+  n_jobs: ${N_JOBS}
+  verbosity: ${MODEL_VERBOSITY}
+
+inference:
+  batch_size: ${INFERENCE_BATCH_SIZE}
+  max_retries: ${INFERENCE_MAX_RETRIES}
+  timeout_seconds: ${INFERENCE_TIMEOUT}
+
+explainability:
+  enabled: ${SHAP_ENABLED}
+  background_samples: ${SHAP_BACKGROUND_SAMPLES}

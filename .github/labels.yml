@@ -1,0 +1,50 @@
+# GitHub Labels Configuration
+# Import via: gh label create --force < labels.yml
+
+- name: bug
+  description: Something isn't working
+  color: d73a4a
+
+- name: enhancement
+  description: New feature or request
+  color: a2eeef
+
+- name: documentation
+  description: Improvements or additions to documentation
+  color: 0075ca
+
+- name: good first issue
+  description: Good for newcomers
+  color: 7057ff
+
+- name: help wanted
+  description: Extra attention is needed
+  color: 008672
+
+- name: ml
+  description: ML pipeline, models, or experiments
+  color: 5319e7
+
+- name: backend
+  description: Backend API or services
+  color: 0e8a16
+
+- name: frontend
+  description: Dashboard or UI
+  color: 1d76db
+
+- name: testing
+  description: Tests or test infrastructure
+  color: e4e669
+
+- name: infrastructure
+  description: Docker, CI/CD, or deployment
+  color: bfd4f2
+
+- name: question
+  description: Further information is requested
+  color: d876e3
+
+- name: wontfix
+  description: This will not be worked on
+  color: ffffff

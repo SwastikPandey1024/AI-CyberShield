@@ -1,0 +1,36 @@
+# ═══════════════════════════════════════════════
+# AI CyberShield — Application Configuration
+# ═══════════════════════════════════════════════
+# This file defines the top-level application configuration.
+# Values should be overridden via environment variables or .env file.
+
+app:
+  name: ${APP_NAME}
+  version: ${API_VERSION}
+  environment: ${APP_ENV}
+  debug: ${DEBUG}
+  host: ${APP_HOST}
+  port: ${APP_PORT}
+
+database:
+  url: ${DATABASE_URL}
+  pool_size: ${DB_POOL_SIZE}
+  max_overflow: ${DB_MAX_OVERFLOW}
+  echo: ${DB_ECHO}
+
+model:
+  path: ${MODEL_PATH}
+  version: ${MODEL_VERSION}
+  threshold: ${MODEL_THRESHOLD}
+  device: ${MODEL_DEVICE}
+
+logging:
+  level: ${LOG_LEVEL}
+  format: ${LOG_FORMAT}
+  output: ${LOG_OUTPUT}
+  rotation: ${LOG_ROTATION}
+
+security:
+  secret_key: ${SECRET_KEY}
+  algorithm: ${JWT_ALGORITHM}
+  token_expiry: ${TOKEN_EXPIRY}

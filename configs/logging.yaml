@@ -1,0 +1,62 @@
+# ═══════════════════════════════════════════════
+# AI CyberShield — Logging Configuration
+# ═══════════════════════════════════════════════
+# Defines logging levels, formats, handlers, and output destinations.
+
+logging:
+  version: 1
+  disable_existing_loggers: false
+
+  formatters:
+    json:
+      format: ${JSON_LOG_FORMAT}
+      class: pythonjsonlogger.jsonlogger.JsonFormatter
+    standard:
+      format: ${STANDARD_LOG_FORMAT}
+      datefmt: ${LOG_DATE_FORMAT}
+    verbose:
+      format: ${VERBOSE_LOG_FORMAT}
+      datefmt: ${LOG_DATE_FORMAT}
+
+  handlers:
+    console:
+      class: logging.StreamHandler
+      level: ${CONSOLE_LOG_LEVEL}
+      formatter: ${CONSOLE_LOG_FORMATTER}
+      stream: ext://sys.stdout
+    file:
+      class: logging.handlers.RotatingFileHandler
+      level: ${FILE_LOG_LEVEL}
+      formatter: ${FILE_LOG_FORMATTER}
+      filename: ${LOG_FILE_PATH}
+      maxBytes: ${LOG_MAX_BYTES}
+      backupCount: ${LOG_BACKUP_COUNT}
+    error_file:
+      class: logging.handlers.RotatingFileHandler
+      level: ERROR
+      formatter: ${ERROR_LOG_FORMATTER}
+      filename: ${ERROR_LOG_FILE_PATH}
+      maxBytes: ${LOG_MAX_BYTES}
+      backupCount: ${LOG_BACKUP_COUNT}
+
+  loggers:
+    backend:
+      level: ${BACKEND_LOG_LEVEL}
+      handlers: [console, file]
+      propagate: false
+    ml:
+      level: ${ML_LOG_LEVEL}
+      handlers: [console, file]
+      propagate: false
+    uvicorn:
+      level: ${UVICORN_LOG_LEVEL}
+      handlers: [console]
+      propagate: false
+    sqlalchemy:
+      level: ${SQLALCHEMY_LOG_LEVEL}
+      handlers: [file]
+      propagate: false
+
+  root:
+    level: ${ROOT_LOG_LEVEL}
+    handlers: [console, file, error_file]

@@ -1,0 +1,53 @@
+# ═══════════════════════════════════════════════
+# AI CyberShield — Training Configuration
+# ═══════════════════════════════════════════════
+# Defines dataset paths, preprocessing parameters, training strategy,
+# and evaluation metrics.
+
+dataset:
+  source: ${DATASET_SOURCE}
+  raw_path: ${DATASET_RAW_PATH}
+  processed_path: ${DATASET_PROCESSED_PATH}
+  sample_size: ${DATASET_SAMPLE_SIZE}
+  random_seed: ${DATASET_RANDOM_SEED}
+  target_column: ${DATASET_TARGET_COLUMN}
+
+preprocessing:
+  test_size: ${TRAIN_TEST_SPLIT}
+  validation_size: ${TRAIN_VAL_SPLIT}
+  scaling_method: ${SCALING_METHOD}
+  encoding_method: ${ENCODING_METHOD}
+  handle_missing: ${HANDLE_MISSING}
+  handle_outliers: ${HANDLE_OUTLIERS}
+  feature_selection_method: ${FEATURE_SELECTION_METHOD}
+  selected_features: ${SELECTED_FEATURES}
+
+training:
+  algorithm: ${TRAINING_ALGORITHM}
+  cross_validation_folds: ${CV_FOLDS}
+  scoring_metric: ${SCORING_METRIC}
+  optimize_hyperparameters: ${OPTIMIZE_HYPERPARAMS}
+  search_method: ${HYPERPARAM_SEARCH_METHOD}
+  max_trials: ${MAX_TRIALS}
+  early_stopping_rounds: ${EARLY_STOPPING_ROUNDS}
+  class_weight: ${CLASS_WEIGHT}
+  sampling_strategy: ${SAMPLING_STRATEGY}
+
+evaluation:
+  metrics:
+    - accuracy
+    - precision
+    - recall
+    - f1_score
+    - roc_auc
+  per_class_metrics: true
+  confusion_matrix: true
+  roc_curve: true
+  precision_recall_curve: true
+  feature_importance: true
+  classification_report: true
+
+output:
+  model_path: ${MODEL_OUTPUT_PATH}
+  metrics_path: ${METRICS_OUTPUT_PATH}
+  report_path: ${REPORT_OUTPUT_PATH}
