@@ -1,7 +1,7 @@
 # ADR 0003: FastAPI as Backend Framework
 
 **Status:** Accepted
-**Date:** 2024
+**Date:** 2026
 **Deciders:** Engineering Team
 
 ---

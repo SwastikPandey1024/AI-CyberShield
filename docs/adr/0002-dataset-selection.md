@@ -1,7 +1,7 @@
 # ADR 0002: Dataset Selection
 
 **Status:** Accepted
-**Date:** 2024
+**Date:** 2026
 **Deciders:** Engineering Team
 
 ---

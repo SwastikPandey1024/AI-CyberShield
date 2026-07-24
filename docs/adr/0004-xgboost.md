@@ -1,7 +1,7 @@
 # ADR 0004: XGBoost as ML Algorithm
 
 **Status:** Accepted
-**Date:** 2024
+**Date:** 2026
 **Deciders:** Engineering Team
 
 ---
