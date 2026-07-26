@@ -137,6 +137,20 @@ Desktop.ini
 $RECYCLE.BIN/
 
 # ──────────────────────────────────────────────
+# Reports & Data Science Artifacts
+# ──────────────────────────────────────────────
+# Ignore generated figures and profiling outputs but track directory structure
+reports/data/profiling/*.html
+reports/data/profiling/*.json
+reports/data/profiling/figures/feature_distributions/*
+!reports/data/profiling/figures/feature_distributions/.gitkeep
+reports/data/eda/*.ipynb
+reports/data/eda/*.html
+!reports/data/eda/.gitkeep
+reports/data/validation/*
+!reports/data/validation/.gitkeep
+
+# ──────────────────────────────────────────────
 # Miscellaneous
 # ──────────────────────────────────────────────
 *.pyc
