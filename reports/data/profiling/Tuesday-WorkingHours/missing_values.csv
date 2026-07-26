@@ -1,80 +1,80 @@
 column,dtype,total,missing_count,missing_ratio,non_missing
- Destination Port,int64,445909,0,0.0,445909
- Flow Duration,int64,445909,0,0.0,445909
- Total Fwd Packets,int64,445909,0,0.0,445909
- Total Backward Packets,int64,445909,0,0.0,445909
+Destination Port,int64,445909,0,0.0,445909
+Flow Duration,int64,445909,0,0.0,445909
+Total Fwd Packets,int64,445909,0,0.0,445909
+Total Backward Packets,int64,445909,0,0.0,445909
 Total Length of Fwd Packets,int64,445909,0,0.0,445909
- Total Length of Bwd Packets,int64,445909,0,0.0,445909
- Fwd Packet Length Max,int64,445909,0,0.0,445909
- Fwd Packet Length Min,int64,445909,0,0.0,445909
- Fwd Packet Length Mean,float64,445909,0,0.0,445909
- Fwd Packet Length Std,float64,445909,0,0.0,445909
+Total Length of Bwd Packets,int64,445909,0,0.0,445909
+Fwd Packet Length Max,int64,445909,0,0.0,445909
+Fwd Packet Length Min,int64,445909,0,0.0,445909
+Fwd Packet Length Mean,float64,445909,0,0.0,445909
+Fwd Packet Length Std,float64,445909,0,0.0,445909
 Bwd Packet Length Max,int64,445909,0,0.0,445909
- Bwd Packet Length Min,int64,445909,0,0.0,445909
- Bwd Packet Length Mean,float64,445909,0,0.0,445909
- Bwd Packet Length Std,float64,445909,0,0.0,445909
+Bwd Packet Length Min,int64,445909,0,0.0,445909
+Bwd Packet Length Mean,float64,445909,0,0.0,445909
+Bwd Packet Length Std,float64,445909,0,0.0,445909
 Flow Bytes/s,float64,445909,201,0.0004507646178928885,445708
- Flow Packets/s,float64,445909,0,0.0,445909
- Flow IAT Mean,float64,445909,0,0.0,445909
- Flow IAT Std,float64,445909,0,0.0,445909
- Flow IAT Max,int64,445909,0,0.0,445909
- Flow IAT Min,int64,445909,0,0.0,445909
+Flow Packets/s,float64,445909,0,0.0,445909
+Flow IAT Mean,float64,445909,0,0.0,445909
+Flow IAT Std,float64,445909,0,0.0,445909
+Flow IAT Max,int64,445909,0,0.0,445909
+Flow IAT Min,int64,445909,0,0.0,445909
 Fwd IAT Total,int64,445909,0,0.0,445909
- Fwd IAT Mean,float64,445909,0,0.0,445909
- Fwd IAT Std,float64,445909,0,0.0,445909
- Fwd IAT Max,int64,445909,0,0.0,445909
- Fwd IAT Min,int64,445909,0,0.0,445909
+Fwd IAT Mean,float64,445909,0,0.0,445909
+Fwd IAT Std,float64,445909,0,0.0,445909
+Fwd IAT Max,int64,445909,0,0.0,445909
+Fwd IAT Min,int64,445909,0,0.0,445909
 Bwd IAT Total,int64,445909,0,0.0,445909
- Bwd IAT Mean,float64,445909,0,0.0,445909
- Bwd IAT Std,float64,445909,0,0.0,445909
- Bwd IAT Max,int64,445909,0,0.0,445909
- Bwd IAT Min,int64,445909,0,0.0,445909
+Bwd IAT Mean,float64,445909,0,0.0,445909
+Bwd IAT Std,float64,445909,0,0.0,445909
+Bwd IAT Max,int64,445909,0,0.0,445909
+Bwd IAT Min,int64,445909,0,0.0,445909
 Fwd PSH Flags,int64,445909,0,0.0,445909
- Bwd PSH Flags,int64,445909,0,0.0,445909
- Fwd URG Flags,int64,445909,0,0.0,445909
- Bwd URG Flags,int64,445909,0,0.0,445909
- Fwd Header Length,int64,445909,0,0.0,445909
- Bwd Header Length,int64,445909,0,0.0,445909
+Bwd PSH Flags,int64,445909,0,0.0,445909
+Fwd URG Flags,int64,445909,0,0.0,445909
+Bwd URG Flags,int64,445909,0,0.0,445909
+Fwd Header Length,int64,445909,0,0.0,445909
+Bwd Header Length,int64,445909,0,0.0,445909
 Fwd Packets/s,float64,445909,0,0.0,445909
- Bwd Packets/s,float64,445909,0,0.0,445909
- Min Packet Length,int64,445909,0,0.0,445909
- Max Packet Length,int64,445909,0,0.0,445909
- Packet Length Mean,float64,445909,0,0.0,445909
- Packet Length Std,float64,445909,0,0.0,445909
- Packet Length Variance,float64,445909,0,0.0,445909
+Bwd Packets/s,float64,445909,0,0.0,445909
+Min Packet Length,int64,445909,0,0.0,445909
+Max Packet Length,int64,445909,0,0.0,445909
+Packet Length Mean,float64,445909,0,0.0,445909
+Packet Length Std,float64,445909,0,0.0,445909
+Packet Length Variance,float64,445909,0,0.0,445909
 FIN Flag Count,int64,445909,0,0.0,445909
- SYN Flag Count,int64,445909,0,0.0,445909
- RST Flag Count,int64,445909,0,0.0,445909
- PSH Flag Count,int64,445909,0,0.0,445909
- ACK Flag Count,int64,445909,0,0.0,445909
- URG Flag Count,int64,445909,0,0.0,445909
- CWE Flag Count,int64,445909,0,0.0,445909
- ECE Flag Count,int64,445909,0,0.0,445909
- Down/Up Ratio,int64,445909,0,0.0,445909
- Average Packet Size,float64,445909,0,0.0,445909
- Avg Fwd Segment Size,float64,445909,0,0.0,445909
- Avg Bwd Segment Size,float64,445909,0,0.0,445909
- Fwd Header Length.1,int64,445909,0,0.0,445909
+SYN Flag Count,int64,445909,0,0.0,445909
+RST Flag Count,int64,445909,0,0.0,445909
+PSH Flag Count,int64,445909,0,0.0,445909
+ACK Flag Count,int64,445909,0,0.0,445909
+URG Flag Count,int64,445909,0,0.0,445909
+CWE Flag Count,int64,445909,0,0.0,445909
+ECE Flag Count,int64,445909,0,0.0,445909
+Down/Up Ratio,int64,445909,0,0.0,445909
+Average Packet Size,float64,445909,0,0.0,445909
+Avg Fwd Segment Size,float64,445909,0,0.0,445909
+Avg Bwd Segment Size,float64,445909,0,0.0,445909
+Fwd Header Length.1,int64,445909,0,0.0,445909
 Fwd Avg Bytes/Bulk,int64,445909,0,0.0,445909
- Fwd Avg Packets/Bulk,int64,445909,0,0.0,445909
- Fwd Avg Bulk Rate,int64,445909,0,0.0,445909
- Bwd Avg Bytes/Bulk,int64,445909,0,0.0,445909
- Bwd Avg Packets/Bulk,int64,445909,0,0.0,445909
+Fwd Avg Packets/Bulk,int64,445909,0,0.0,445909
+Fwd Avg Bulk Rate,int64,445909,0,0.0,445909
+Bwd Avg Bytes/Bulk,int64,445909,0,0.0,445909
+Bwd Avg Packets/Bulk,int64,445909,0,0.0,445909
 Bwd Avg Bulk Rate,int64,445909,0,0.0,445909
 Subflow Fwd Packets,int64,445909,0,0.0,445909
- Subflow Fwd Bytes,int64,445909,0,0.0,445909
- Subflow Bwd Packets,int64,445909,0,0.0,445909
- Subflow Bwd Bytes,int64,445909,0,0.0,445909
+Subflow Fwd Bytes,int64,445909,0,0.0,445909
+Subflow Bwd Packets,int64,445909,0,0.0,445909
+Subflow Bwd Bytes,int64,445909,0,0.0,445909
 Init_Win_bytes_forward,int64,445909,0,0.0,445909
- Init_Win_bytes_backward,int64,445909,0,0.0,445909
- act_data_pkt_fwd,int64,445909,0,0.0,445909
- min_seg_size_forward,int64,445909,0,0.0,445909
+Init_Win_bytes_backward,int64,445909,0,0.0,445909
+act_data_pkt_fwd,int64,445909,0,0.0,445909
+min_seg_size_forward,int64,445909,0,0.0,445909
 Active Mean,float64,445909,0,0.0,445909
- Active Std,float64,445909,0,0.0,445909
- Active Max,int64,445909,0,0.0,445909
- Active Min,int64,445909,0,0.0,445909
+Active Std,float64,445909,0,0.0,445909
+Active Max,int64,445909,0,0.0,445909
+Active Min,int64,445909,0,0.0,445909
 Idle Mean,float64,445909,0,0.0,445909
- Idle Std,float64,445909,0,0.0,445909
- Idle Max,int64,445909,0,0.0,445909
- Idle Min,int64,445909,0,0.0,445909
- Label,object,445909,0,0.0,445909
+Idle Std,float64,445909,0,0.0,445909
+Idle Max,int64,445909,0,0.0,445909
+Idle Min,int64,445909,0,0.0,445909
+Label,object,445909,0,0.0,445909

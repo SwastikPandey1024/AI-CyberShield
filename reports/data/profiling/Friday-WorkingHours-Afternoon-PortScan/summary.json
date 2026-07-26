@@ -8,11 +8,17 @@
   "total_duplicate_ratio": 0.25257,
   "memory_usage_bytes": 194829085,
   "memory_usage_mb": 185.8,
-  "target_column": null,
-  "num_classes": 0,
-  "class_distribution": {},
-  "class_ratios": {},
-  "class_balance_ratio": null,
+  "target_column": "Label",
+  "num_classes": 2,
+  "class_distribution": {
+    "PortScan": 158930,
+    "BENIGN": 127537
+  },
+  "class_ratios": {
+    "PortScan": 0.554793,
+    "BENIGN": 0.445207
+  },
+  "class_balance_ratio": 0.802473,
   "has_missing_values": true,
   "has_duplicates": true,
   "has_infinite_values": true,
@@ -20,20 +26,20 @@
   "has_constant_columns": true,
   "has_high_cardinality": false,
   "warnings": [
-    "Column ' Bwd PSH Flags' is constant (single value). Consider dropping for modeling.",
-    "Column ' Fwd URG Flags' is constant (single value). Consider dropping for modeling.",
-    "Column ' Bwd URG Flags' is constant (single value). Consider dropping for modeling.",
-    "Column ' CWE Flag Count' is constant (single value). Consider dropping for modeling.",
+    "Column 'Bwd PSH Flags' is constant (single value). Consider dropping for modeling.",
+    "Column 'Fwd URG Flags' is constant (single value). Consider dropping for modeling.",
+    "Column 'Bwd URG Flags' is constant (single value). Consider dropping for modeling.",
+    "Column 'CWE Flag Count' is constant (single value). Consider dropping for modeling.",
     "Column 'Fwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.",
-    "Column ' Fwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.",
-    "Column ' Fwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling.",
-    "Column ' Bwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.",
-    "Column ' Bwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.",
+    "Column 'Fwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.",
+    "Column 'Fwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling.",
+    "Column 'Bwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.",
+    "Column 'Bwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.",
     "Column 'Bwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling."
   ],
   "columns": [
     {
-      "column_name": " Destination Port",
+      "column_name": "Destination Port",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -59,7 +65,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow Duration",
+      "column_name": "Flow Duration",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -85,7 +91,7 @@
       "top_values": []
     },
     {
-      "column_name": " Total Fwd Packets",
+      "column_name": "Total Fwd Packets",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -111,7 +117,7 @@
       "top_values": []
     },
     {
-      "column_name": " Total Backward Packets",
+      "column_name": "Total Backward Packets",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -163,7 +169,7 @@
       "top_values": []
     },
     {
-      "column_name": " Total Length of Bwd Packets",
+      "column_name": "Total Length of Bwd Packets",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -189,7 +195,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Packet Length Max",
+      "column_name": "Fwd Packet Length Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -215,7 +221,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Packet Length Min",
+      "column_name": "Fwd Packet Length Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -241,7 +247,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Packet Length Mean",
+      "column_name": "Fwd Packet Length Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -267,7 +273,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Packet Length Std",
+      "column_name": "Fwd Packet Length Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -319,7 +325,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Packet Length Min",
+      "column_name": "Bwd Packet Length Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -345,7 +351,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Packet Length Mean",
+      "column_name": "Bwd Packet Length Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -371,7 +377,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Packet Length Std",
+      "column_name": "Bwd Packet Length Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -423,7 +429,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow Packets/s",
+      "column_name": "Flow Packets/s",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -449,7 +455,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow IAT Mean",
+      "column_name": "Flow IAT Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -475,7 +481,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow IAT Std",
+      "column_name": "Flow IAT Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -501,7 +507,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow IAT Max",
+      "column_name": "Flow IAT Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -527,7 +533,7 @@
       "top_values": []
     },
     {
-      "column_name": " Flow IAT Min",
+      "column_name": "Flow IAT Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -579,7 +585,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd IAT Mean",
+      "column_name": "Fwd IAT Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -605,7 +611,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd IAT Std",
+      "column_name": "Fwd IAT Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -631,7 +637,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd IAT Max",
+      "column_name": "Fwd IAT Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -657,7 +663,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd IAT Min",
+      "column_name": "Fwd IAT Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -709,7 +715,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd IAT Mean",
+      "column_name": "Bwd IAT Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -735,7 +741,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd IAT Std",
+      "column_name": "Bwd IAT Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -761,7 +767,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd IAT Max",
+      "column_name": "Bwd IAT Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -787,7 +793,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd IAT Min",
+      "column_name": "Bwd IAT Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -839,7 +845,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd PSH Flags",
+      "column_name": "Bwd PSH Flags",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -865,7 +871,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd URG Flags",
+      "column_name": "Fwd URG Flags",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -891,7 +897,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd URG Flags",
+      "column_name": "Bwd URG Flags",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -917,7 +923,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Header Length",
+      "column_name": "Fwd Header Length",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -943,7 +949,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Header Length",
+      "column_name": "Bwd Header Length",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -995,7 +1001,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Packets/s",
+      "column_name": "Bwd Packets/s",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1021,7 +1027,7 @@
       "top_values": []
     },
     {
-      "column_name": " Min Packet Length",
+      "column_name": "Min Packet Length",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1047,7 +1053,7 @@
       "top_values": []
     },
     {
-      "column_name": " Max Packet Length",
+      "column_name": "Max Packet Length",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1073,7 +1079,7 @@
       "top_values": []
     },
     {
-      "column_name": " Packet Length Mean",
+      "column_name": "Packet Length Mean",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1099,7 +1105,7 @@
       "top_values": []
     },
     {
-      "column_name": " Packet Length Std",
+      "column_name": "Packet Length Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1125,7 +1131,7 @@
       "top_values": []
     },
     {
-      "column_name": " Packet Length Variance",
+      "column_name": "Packet Length Variance",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1177,7 +1183,7 @@
       "top_values": []
     },
     {
-      "column_name": " SYN Flag Count",
+      "column_name": "SYN Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1203,7 +1209,7 @@
       "top_values": []
     },
     {
-      "column_name": " RST Flag Count",
+      "column_name": "RST Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1229,7 +1235,7 @@
       "top_values": []
     },
     {
-      "column_name": " PSH Flag Count",
+      "column_name": "PSH Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1255,7 +1261,7 @@
       "top_values": []
     },
     {
-      "column_name": " ACK Flag Count",
+      "column_name": "ACK Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1281,7 +1287,7 @@
       "top_values": []
     },
     {
-      "column_name": " URG Flag Count",
+      "column_name": "URG Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1307,7 +1313,7 @@
       "top_values": []
     },
     {
-      "column_name": " CWE Flag Count",
+      "column_name": "CWE Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1333,7 +1339,7 @@
       "top_values": []
     },
     {
-      "column_name": " ECE Flag Count",
+      "column_name": "ECE Flag Count",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1359,7 +1365,7 @@
       "top_values": []
     },
     {
-      "column_name": " Down/Up Ratio",
+      "column_name": "Down/Up Ratio",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1385,7 +1391,7 @@
       "top_values": []
     },
     {
-      "column_name": " Average Packet Size",
+      "column_name": "Average Packet Size",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1411,7 +1417,7 @@
       "top_values": []
     },
     {
-      "column_name": " Avg Fwd Segment Size",
+      "column_name": "Avg Fwd Segment Size",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1437,7 +1443,7 @@
       "top_values": []
     },
     {
-      "column_name": " Avg Bwd Segment Size",
+      "column_name": "Avg Bwd Segment Size",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1463,7 +1469,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Header Length.1",
+      "column_name": "Fwd Header Length.1",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1515,7 +1521,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Avg Packets/Bulk",
+      "column_name": "Fwd Avg Packets/Bulk",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1541,7 +1547,7 @@
       "top_values": []
     },
     {
-      "column_name": " Fwd Avg Bulk Rate",
+      "column_name": "Fwd Avg Bulk Rate",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1567,7 +1573,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Avg Bytes/Bulk",
+      "column_name": "Bwd Avg Bytes/Bulk",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1593,7 +1599,7 @@
       "top_values": []
     },
     {
-      "column_name": " Bwd Avg Packets/Bulk",
+      "column_name": "Bwd Avg Packets/Bulk",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1671,7 +1677,7 @@
       "top_values": []
     },
     {
-      "column_name": " Subflow Fwd Bytes",
+      "column_name": "Subflow Fwd Bytes",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1697,7 +1703,7 @@
       "top_values": []
     },
     {
-      "column_name": " Subflow Bwd Packets",
+      "column_name": "Subflow Bwd Packets",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1723,7 +1729,7 @@
       "top_values": []
     },
     {
-      "column_name": " Subflow Bwd Bytes",
+      "column_name": "Subflow Bwd Bytes",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1775,7 +1781,7 @@
       "top_values": []
     },
     {
-      "column_name": " Init_Win_bytes_backward",
+      "column_name": "Init_Win_bytes_backward",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1801,7 +1807,7 @@
       "top_values": []
     },
     {
-      "column_name": " act_data_pkt_fwd",
+      "column_name": "act_data_pkt_fwd",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1827,7 +1833,7 @@
       "top_values": []
     },
     {
-      "column_name": " min_seg_size_forward",
+      "column_name": "min_seg_size_forward",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1879,7 +1885,7 @@
       "top_values": []
     },
     {
-      "column_name": " Active Std",
+      "column_name": "Active Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -1905,7 +1911,7 @@
       "top_values": []
     },
     {
-      "column_name": " Active Max",
+      "column_name": "Active Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1931,7 +1937,7 @@
       "top_values": []
     },
     {
-      "column_name": " Active Min",
+      "column_name": "Active Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -1983,7 +1989,7 @@
       "top_values": []
     },
     {
-      "column_name": " Idle Std",
+      "column_name": "Idle Std",
       "dtype": "float64",
       "count": 286467,
       "missing_count": 0,
@@ -2009,7 +2015,7 @@
       "top_values": []
     },
     {
-      "column_name": " Idle Max",
+      "column_name": "Idle Max",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -2035,7 +2041,7 @@
       "top_values": []
     },
     {
-      "column_name": " Idle Min",
+      "column_name": "Idle Min",
       "dtype": "int64",
       "count": 286467,
       "missing_count": 0,
@@ -2061,7 +2067,7 @@
       "top_values": []
     },
     {
-      "column_name": " Label",
+      "column_name": "Label",
       "dtype": "object",
       "count": 286467,
       "missing_count": 0,
@@ -2070,7 +2076,7 @@
       "unique_ratio": 7e-06,
       "is_numeric": false,
       "is_categorical": true,
-      "is_target": false,
+      "is_target": true,
       "mean": null,
       "std": null,
       "min": null,
@@ -2096,6 +2102,6 @@
       ]
     }
   ],
-  "generated_at": "2026-07-26T12:58:46.165911",
+  "generated_at": "2026-07-26T15:21:16.150460",
   "profiling_tool": "AI CyberShield Profiler v0.1.0"
 }

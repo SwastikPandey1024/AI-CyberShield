@@ -1,6 +1,6 @@
 # Dataset Profile: Friday-WorkingHours-Morning.pcap_ISCX.csv
 
-*Generated: 2026-07-26 12:57:59 UTC*
+*Generated: 2026-07-26 15:20:25 UTC*
 
 ## Dataset Summary
 
@@ -11,6 +11,21 @@
 | Memory Usage | 123.70 MB |
 | Missing Cells | 28 (0.00%) |
 | Duplicate Rows | 6,888 (3.61%) |
+
+## Target Analysis
+
+| Metric | Value |
+|--------|-------|
+| Target Column | Label |
+| Number of Classes | 2 |
+| Class Balance Ratio | 0.0104 |
+
+### Class Distribution
+
+| Class | Count | Ratio |
+|-------|-------|-------|
+| BENIGN | 189,067 | 98.9709% |
+| Bot | 1,966 | 1.0291% |
 
 ## Data Quality Flags
 
@@ -25,13 +40,14 @@
 
 ## Warnings
 
-- ⚠️ Column ' Bwd PSH Flags' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Fwd URG Flags' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Bwd URG Flags' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' CWE Flag Count' is constant (single value). Consider dropping for modeling.
+- ⚠️ Severe class imbalance detected: ratio=0.0104. Consider resampling techniques.
+- ⚠️ Column 'Bwd PSH Flags' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Fwd URG Flags' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Bwd URG Flags' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'CWE Flag Count' is constant (single value). Consider dropping for modeling.
 - ⚠️ Column 'Fwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Fwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Fwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Bwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.
-- ⚠️ Column ' Bwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Fwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Fwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Bwd Avg Bytes/Bulk' is constant (single value). Consider dropping for modeling.
+- ⚠️ Column 'Bwd Avg Packets/Bulk' is constant (single value). Consider dropping for modeling.
 - ⚠️ Column 'Bwd Avg Bulk Rate' is constant (single value). Consider dropping for modeling.
