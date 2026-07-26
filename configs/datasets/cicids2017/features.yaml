@@ -1,0 +1,791 @@
+features:
+- name: Destination Port
+  dtype: int64
+  description: 'Network-level feature: Destination Port'
+  feature_type: network
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow Duration
+  dtype: int64
+  description: 'Time-based feature: Flow Duration'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Total Fwd Packets
+  dtype: int64
+  description: 'Packet-level feature: Total Fwd Packets'
+  feature_type: packet
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Total Backward Packets
+  dtype: int64
+  description: 'General network traffic feature: Total Backward Packets'
+  feature_type: other
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Total Length of Fwd Packets
+  dtype: int64
+  description: 'Payload size feature: Total Length of Fwd Packets'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Total Length of Bwd Packets
+  dtype: int64
+  description: 'Payload size feature: Total Length of Bwd Packets'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Packet Length Max
+  dtype: int64
+  description: 'Payload size feature: Fwd Packet Length Max'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Packet Length Min
+  dtype: int64
+  description: 'Payload size feature: Fwd Packet Length Min'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Packet Length Mean
+  dtype: float64
+  description: 'Payload size feature: Fwd Packet Length Mean'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Packet Length Std
+  dtype: float64
+  description: 'Payload size feature: Fwd Packet Length Std'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Packet Length Max
+  dtype: int64
+  description: 'Payload size feature: Bwd Packet Length Max'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Packet Length Min
+  dtype: int64
+  description: 'Payload size feature: Bwd Packet Length Min'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Packet Length Mean
+  dtype: float64
+  description: 'Payload size feature: Bwd Packet Length Mean'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Packet Length Std
+  dtype: float64
+  description: 'Payload size feature: Bwd Packet Length Std'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow Bytes/s
+  dtype: float64
+  description: 'Flow-level aggregate: Flow Bytes/s'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow Packets/s
+  dtype: float64
+  description: 'Flow-level aggregate: Flow Packets/s'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow IAT Mean
+  dtype: float64
+  description: 'Time-based feature: Flow IAT Mean'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow IAT Std
+  dtype: float64
+  description: 'Time-based feature: Flow IAT Std'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow IAT Max
+  dtype: int64
+  description: 'Time-based feature: Flow IAT Max'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Flow IAT Min
+  dtype: int64
+  description: 'Time-based feature: Flow IAT Min'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd IAT Total
+  dtype: int64
+  description: 'Time-based feature: Fwd IAT Total'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd IAT Mean
+  dtype: float64
+  description: 'Time-based feature: Fwd IAT Mean'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd IAT Std
+  dtype: float64
+  description: 'Time-based feature: Fwd IAT Std'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd IAT Max
+  dtype: int64
+  description: 'Time-based feature: Fwd IAT Max'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd IAT Min
+  dtype: int64
+  description: 'Time-based feature: Fwd IAT Min'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd IAT Total
+  dtype: int64
+  description: 'Time-based feature: Bwd IAT Total'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd IAT Mean
+  dtype: float64
+  description: 'Time-based feature: Bwd IAT Mean'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd IAT Std
+  dtype: float64
+  description: 'Time-based feature: Bwd IAT Std'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd IAT Max
+  dtype: int64
+  description: 'Time-based feature: Bwd IAT Max'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd IAT Min
+  dtype: int64
+  description: 'Time-based feature: Bwd IAT Min'
+  feature_type: time
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd PSH Flags
+  dtype: int64
+  description: 'TCP flag count: Fwd PSH Flags'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd PSH Flags
+  dtype: int64
+  description: 'TCP flag count: Bwd PSH Flags'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd URG Flags
+  dtype: int64
+  description: 'TCP flag count: Fwd URG Flags'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd URG Flags
+  dtype: int64
+  description: 'TCP flag count: Bwd URG Flags'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Header Length
+  dtype: int64
+  description: 'Header length feature: Fwd Header Length'
+  feature_type: header
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Header Length
+  dtype: int64
+  description: 'Header length feature: Bwd Header Length'
+  feature_type: header
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Packets/s
+  dtype: float64
+  description: 'Packet-level feature: Fwd Packets/s'
+  feature_type: packet
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Packets/s
+  dtype: float64
+  description: 'Packet-level feature: Bwd Packets/s'
+  feature_type: packet
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Min Packet Length
+  dtype: int64
+  description: 'Payload size feature: Min Packet Length'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Max Packet Length
+  dtype: int64
+  description: 'Payload size feature: Max Packet Length'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Packet Length Mean
+  dtype: float64
+  description: 'Payload size feature: Packet Length Mean'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Packet Length Std
+  dtype: float64
+  description: 'Payload size feature: Packet Length Std'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Packet Length Variance
+  dtype: float64
+  description: 'Payload size feature: Packet Length Variance'
+  feature_type: payload
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: FIN Flag Count
+  dtype: int64
+  description: 'TCP flag count: FIN Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: SYN Flag Count
+  dtype: int64
+  description: 'TCP flag count: SYN Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: RST Flag Count
+  dtype: int64
+  description: 'TCP flag count: RST Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: PSH Flag Count
+  dtype: int64
+  description: 'TCP flag count: PSH Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: ACK Flag Count
+  dtype: int64
+  description: 'TCP flag count: ACK Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: URG Flag Count
+  dtype: int64
+  description: 'TCP flag count: URG Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: CWE Flag Count
+  dtype: int64
+  description: 'TCP flag count: CWE Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: ECE Flag Count
+  dtype: int64
+  description: 'TCP flag count: ECE Flag Count'
+  feature_type: flag
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Down/Up Ratio
+  dtype: int64
+  description: 'Statistical feature: Down/Up Ratio'
+  feature_type: stat
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Average Packet Size
+  dtype: float64
+  description: 'General network traffic feature: Average Packet Size'
+  feature_type: other
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Avg Fwd Segment Size
+  dtype: float64
+  description: 'Statistical feature: Avg Fwd Segment Size'
+  feature_type: stat
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Avg Bwd Segment Size
+  dtype: float64
+  description: 'Statistical feature: Avg Bwd Segment Size'
+  feature_type: stat
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Header Length.1
+  dtype: int64
+  description: 'Header length feature: Fwd Header Length.1'
+  feature_type: header
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Avg Bytes/Bulk
+  dtype: int64
+  description: 'Bulk transfer statistics: Fwd Avg Bytes/Bulk'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Avg Packets/Bulk
+  dtype: int64
+  description: 'Bulk transfer statistics: Fwd Avg Packets/Bulk'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Fwd Avg Bulk Rate
+  dtype: int64
+  description: 'Bulk transfer statistics: Fwd Avg Bulk Rate'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Avg Bytes/Bulk
+  dtype: int64
+  description: 'Bulk transfer statistics: Bwd Avg Bytes/Bulk'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Avg Packets/Bulk
+  dtype: int64
+  description: 'Bulk transfer statistics: Bwd Avg Packets/Bulk'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Bwd Avg Bulk Rate
+  dtype: int64
+  description: 'Bulk transfer statistics: Bwd Avg Bulk Rate'
+  feature_type: bulk
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Subflow Fwd Packets
+  dtype: int64
+  description: 'Flow-level aggregate: Subflow Fwd Packets'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Subflow Fwd Bytes
+  dtype: int64
+  description: 'Flow-level aggregate: Subflow Fwd Bytes'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Subflow Bwd Packets
+  dtype: int64
+  description: 'Flow-level aggregate: Subflow Bwd Packets'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Subflow Bwd Bytes
+  dtype: int64
+  description: 'Flow-level aggregate: Subflow Bwd Bytes'
+  feature_type: flow
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Init_Win_bytes_forward
+  dtype: int64
+  description: 'TCP window size: Init_Win_bytes_forward'
+  feature_type: window
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Init_Win_bytes_backward
+  dtype: int64
+  description: 'TCP window size: Init_Win_bytes_backward'
+  feature_type: window
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: act_data_pkt_fwd
+  dtype: int64
+  description: 'Packet-level feature: act_data_pkt_fwd'
+  feature_type: packet
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: min_seg_size_forward
+  dtype: int64
+  description: 'Packet-level feature: min_seg_size_forward'
+  feature_type: packet
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Active Mean
+  dtype: float64
+  description: 'Active time statistics: Active Mean'
+  feature_type: active
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Active Std
+  dtype: float64
+  description: 'Active time statistics: Active Std'
+  feature_type: active
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Active Max
+  dtype: int64
+  description: 'Active time statistics: Active Max'
+  feature_type: active
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Active Min
+  dtype: int64
+  description: 'Active time statistics: Active Min'
+  feature_type: active
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Idle Mean
+  dtype: float64
+  description: 'Idle time statistics: Idle Mean'
+  feature_type: idle
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Idle Std
+  dtype: float64
+  description: 'Idle time statistics: Idle Std'
+  feature_type: idle
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Idle Max
+  dtype: int64
+  description: 'Idle time statistics: Idle Max'
+  feature_type: idle
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Idle Min
+  dtype: int64
+  description: 'Idle time statistics: Idle Min'
+  feature_type: idle
+  expected_range: null
+  unit: null
+  is_categorical: false
+  is_target: false
+  nullable: false
+  source_dataset: CICIDS2017
+- name: Label
+  dtype: object
+  description: Attack category label (target column for classification)
+  feature_type: label
+  expected_range: null
+  unit: null
+  is_categorical: true
+  is_target: true
+  nullable: false
+  source_dataset: CICIDS2017

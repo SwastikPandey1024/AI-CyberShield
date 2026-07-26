@@ -1,0 +1,47 @@
+# AI CyberShield — Feature Scaling Configuration
+# ===============================================
+# Controls how numeric features are scaled before model training.
+# Different feature groups may use different scaling strategies.
+
+dataset: cicids2017
+version: "1.0"
+
+default_scaler: standard        # Options: standard, minmax, robust, maxabs, quantile, none
+
+# Per-group scaler overrides
+per_group_scalers:
+  flow: standard
+  time: robust                  # Robust to outliers in extreme duration values
+  payload: robust               # Packet lengths can vary wildly
+  subflow: standard
+  idle: robust
+  active: robust
+  header: standard
+  window: minmax
+  bulk: robust
+  packet: standard
+  stat: standard
+  other: standard
+  categorical: none
+  label: none
+  target: none
+
+# Parameters for each scaler type
+scaler_params:
+  standard:
+    with_mean: true
+    with_std: true
+  minmax:
+    feature_range: [0, 1]
+  robust:
+    quantile_range: [25.0, 75.0]
+    unit_variance: false
+  maxabs:
+    dont: true
+  quantile:
+    n_quantiles: 1000
+    output_distribution: uniform
+    subsample: 10000
+
+fit_strategy: per_dataset       # Options: per_dataset, per_fold (for cross-validation)
+save_scaler: true               # Save fitted scaler alongside model artifacts

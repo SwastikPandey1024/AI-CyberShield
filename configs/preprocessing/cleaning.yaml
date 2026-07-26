@@ -1,0 +1,39 @@
+# AI CyberShield — Data Cleaning Configuration
+# =============================================
+# Controls how the preprocessing pipeline handles missing values, infinite values,
+# duplicates, and other data quality issues.
+
+dataset: cicids2017
+version: "1.0"
+
+missing_values:
+  strategy: drop              # Options: drop, fill_mean, fill_median, fill_mode, fill_constant, interpolate
+  max_missing_ratio: 0.5      # Drop columns/rows exceeding this threshold (0.0–1.0)
+  fill_axis: columns          # Apply strategy along 'columns' or 'rows'
+  fill_constant: -1           # Used only if strategy is 'fill_constant'
+
+infinite_values:
+  strategy: replace           # Options: replace, drop
+  replace_value: nan          # Replace inf/-inf with this before handling missing values
+
+duplicates:
+  strategy: drop              # Options: drop, keep_first, keep_last, none
+  subset_columns: null        # List of columns to check for duplicates (null = all columns)
+
+negative_values:
+  strategy: warn              # Options: warn, drop, abs, replace_with_nan
+  allowed_columns: []         # Columns where negative values are valid (e.g., flow_id)
+
+constant_columns:
+  strategy: drop              # Options: drop, warn, keep
+  variance_threshold: 0.0     # Drop columns with variance <= this value
+
+outliers:
+  method: iqr                 # Options: iqr, zscore, none
+  iqr_multiplier: 3.0         # Points beyond Q1 - k*IQR or Q3 + k*IQR are flagged
+  zscore_threshold: 3.0       # Used if method is 'zscore'
+  strategy: cap               # Options: cap, drop, warn
+
+dtype_coercion:
+  enabled: true
+  fallback_strategy: coerce   # Options: coerce, raise, skip

@@ -1,0 +1,48 @@
+# CICIDS2017 Attack Label Mappings
+# ================================
+# Maps raw label strings from the CICIDS2017 dataset to canonical attack categories.
+# Also provides integer encoding for model training.
+#
+# Why this exists:
+#   Adding a new dataset (e.g. UNSW-NB15) requires only a new YAML file,
+#   not changes to Python code. The data_dictionary.py loaders consume this.
+#
+# TODO: Add per-dataset overrides for category_to_index ordering.
+
+label_to_category:
+  # Benign
+  BENIGN: BENIGN
+  # DoS attacks
+  DoS Hulk: DoS
+  DoS GoldenEye: DoS
+  DoS Slowloris: DoS
+  DoS Slowhttptest: DoS
+  # DDoS
+  DDoS: DDoS
+  DDoS LOIC-HTTP: DDoS
+  # Port Scan
+  PortScan: PortScan
+  Nmap: PortScan
+  # Brute Force
+  FTP-Patator: BruteForce
+  SSH-Patator: BruteForce
+  # Web Attacks
+  Web Attack Brute Force: WebAttack
+  Web Attack XSS: WebAttack
+  Web Attack Sql Injection: WebAttack
+  # Botnet
+  Botnet: Botnet
+  # Infiltration
+  Infiltration: Infiltration
+  Heartbleed: Infiltration
+
+category_to_index:
+  BENIGN: 0
+  DoS: 1
+  DDoS: 2
+  PortScan: 3
+  BruteForce: 4
+  WebAttack: 5
+  Botnet: 6
+  Infiltration: 7
+  Unknown: 8

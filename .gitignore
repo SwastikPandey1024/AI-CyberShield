@@ -52,6 +52,8 @@ ml/artifacts/*.json
 # Ignore all dataset files but track the directory structure.
 datasets/raw/*
 !datasets/raw/.gitkeep
+!datasets/raw/CICIDS2017/.gitkeep
+datasets/raw/CICIDS2017/*
 datasets/processed/*
 !datasets/processed/.gitkeep
 datasets/external/*
@@ -152,4 +154,3 @@ dmypy_cache/
 .hypothesis/
 perf.tap
 .prof
-

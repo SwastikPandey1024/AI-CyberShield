@@ -1,0 +1,55 @@
+# AI CyberShield — Feature Selection Configuration
+# =================================================
+# Controls which features are selected for model training and how feature groups
+# are defined for the preprocessing pipeline.
+
+dataset: cicids2017
+version: "1.0"
+
+# Feature groups for targeted preprocessing (scaling, encoding, etc.)
+feature_groups:
+  numeric:
+    - flow
+    - time
+    - payload
+    - subflow
+    - idle
+    - active
+    - header
+    - window
+    - bulk
+    - packet
+    - stat
+    - other
+  categorical: []
+  target:
+    - label
+
+# Correlation-based filtering
+correlation:
+  enabled: true
+  method: pearson              # Options: pearson, spearman, kendall
+  threshold: 0.95              # Remove one feature from pairs exceeding this threshold
+  keep_column: first           # Options: first, highest_variance, named
+
+# Variance-based filtering
+variance:
+  enabled: true
+  threshold: 0.01              # Remove features with variance below this (after scaling)
+
+# Mutual information filtering
+mutual_information:
+  enabled: false
+  k_neighbors: 3
+  percentile: 80               # Keep top N percentile of features by MI score
+
+# Manual feature inclusion/exclusion
+include_features: null         # null = use all non-target features from catalogue
+exclude_features:              # Features to always exclude
+  - destination_port           # High cardinality, often not useful for generalization
+
+# Feature importance from trained model (post-hoc)
+importance_based:
+  enabled: false
+  min_importance: 0.001
+  max_features: 50
