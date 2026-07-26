@@ -1,0 +1,5 @@
+metric,value
+total_rows,692703
+duplicate_rows,81909
+duplicate_ratio,11.8245%
+unique_rows,610794

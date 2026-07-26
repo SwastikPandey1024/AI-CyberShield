@@ -1,0 +1,80 @@
+column,dtype,unique_count,unique_ratio,cardinality,is_categorical,is_numeric
+ Destination Port,int64,17787,0.10440463472758649,17787,False,True
+ Flow Duration,int64,84549,0.4962786001901788,84549,False,True
+ Total Fwd Packets,int64,488,0.0028644213047204253,488,False,True
+ Total Backward Packets,int64,576,0.00338095629409624,576,False,True
+Total Length of Fwd Packets,int64,5763,0.03382717208832748,5763,False,True
+ Total Length of Bwd Packets,int64,13285,0.0779791742483829,13285,False,True
+ Fwd Packet Length Max,int64,2594,0.015226042755009802,2594,False,True
+ Fwd Packet Length Min,int64,162,0.0009508939577145674,162,False,True
+ Fwd Packet Length Mean,float64,15505,0.09100994329854549,15505,False,True
+ Fwd Packet Length Std,float64,23334,0.13696394820562788,23334,False,True
+Bwd Packet Length Max,int64,2897,0.017004566638883344,2897,False,True
+ Bwd Packet Length Min,int64,383,0.002248101146942465,383,False,True
+ Bwd Packet Length Mean,float64,19796,0.1161968937464048,19796,False,True
+ Bwd Packet Length Std,float64,23608,0.13857225033163895,23608,False,True
+Flow Bytes/s,float64,112495,0.66031367761173,112495,False,True
+ Flow Packets/s,float64,90876,0.5334162919831422,90876,False,True
+ Flow IAT Mean,float64,89208,0.5236256060481551,89208,False,True
+ Flow IAT Std,float64,75945,0.4457755655471162,75945,False,True
+ Flow IAT Max,int64,61428,0.3605649014474719,61428,False,True
+ Flow IAT Min,int64,23633,0.13871899322634798,23633,False,True
+Fwd IAT Total,int64,35618,0.20906753694986088,35618,False,True
+ Fwd IAT Mean,float64,56266,0.3302654285479497,56266,False,True
+ Fwd IAT Std,float64,50016,0.2935797048706902,50016,False,True
+ Fwd IAT Max,int64,36225,0.21263045443339634,36225,False,True
+ Fwd IAT Min,int64,13467,0.07904746252186469,13467,False,True
+Bwd IAT Total,int64,19624,0.11518730263080662,19624,False,True
+ Bwd IAT Mean,float64,38883,0.22823215899886126,38883,False,True
+ Bwd IAT Std,float64,35539,0.20860382940258032,35539,False,True
+ Bwd IAT Max,int64,19979,0.11727105173567495,19979,False,True
+ Bwd IAT Min,int64,6656,0.03906882828733433,6656,False,True
+Fwd PSH Flags,int64,2,1.1739431576723054e-05,2,False,True
+ Bwd PSH Flags,int64,1,5.869715788361527e-06,1,False,True
+ Fwd URG Flags,int64,1,5.869715788361527e-06,1,False,True
+ Bwd URG Flags,int64,1,5.869715788361527e-06,1,False,True
+ Fwd Header Length,int64,1118,0.006562342251388188,1118,False,True
+ Bwd Header Length,int64,1184,0.006949743493420048,1184,False,True
+Fwd Packets/s,float64,90106,0.5288966108261038,90106,False,True
+ Bwd Packets/s,float64,84059,0.4934024394538816,84059,False,True
+ Min Packet Length,int64,139,0.0008158904945822523,139,False,True
+ Max Packet Length,int64,3401,0.019962903396217556,3401,False,True
+ Packet Length Mean,float64,25653,0.15057581911883827,25653,False,True
+ Packet Length Std,float64,31057,0.18229576323914395,31057,False,True
+ Packet Length Variance,float64,31057,0.18229576323914395,31057,False,True
+FIN Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ SYN Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ RST Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ PSH Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ ACK Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ URG Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ CWE Flag Count,int64,1,5.869715788361527e-06,1,False,True
+ ECE Flag Count,int64,2,1.1739431576723054e-05,2,False,True
+ Down/Up Ratio,int64,8,4.695772630689222e-05,8,False,True
+ Average Packet Size,float64,25005,0.14677224328798,25005,False,True
+ Avg Fwd Segment Size,float64,15505,0.09100994329854549,15505,False,True
+ Avg Bwd Segment Size,float64,19796,0.1161968937464048,19796,False,True
+ Fwd Header Length.1,int64,1118,0.006562342251388188,1118,False,True
+Fwd Avg Bytes/Bulk,int64,1,5.869715788361527e-06,1,False,True
+ Fwd Avg Packets/Bulk,int64,1,5.869715788361527e-06,1,False,True
+ Fwd Avg Bulk Rate,int64,1,5.869715788361527e-06,1,False,True
+ Bwd Avg Bytes/Bulk,int64,1,5.869715788361527e-06,1,False,True
+ Bwd Avg Packets/Bulk,int64,1,5.869715788361527e-06,1,False,True
+Bwd Avg Bulk Rate,int64,1,5.869715788361527e-06,1,False,True
+Subflow Fwd Packets,int64,488,0.0028644213047204253,488,False,True
+ Subflow Fwd Bytes,int64,5763,0.03382717208832748,5763,False,True
+ Subflow Bwd Packets,int64,576,0.00338095629409624,576,False,True
+ Subflow Bwd Bytes,int64,13286,0.07798504396417126,13286,False,True
+Init_Win_bytes_forward,int64,3236,0.018994400291137904,3236,False,True
+ Init_Win_bytes_backward,int64,3524,0.020684878438186022,3524,False,True
+ act_data_pkt_fwd,int64,398,0.0023361468837678877,398,False,True
+ min_seg_size_forward,int64,12,7.043658946033833e-05,12,False,True
+Active Mean,float64,27180,0.15953887512766632,27180,False,True
+ Active Std,float64,17600,0.10330699787516288,17600,False,True
+ Active Max,int64,26814,0.157390559149126,26814,False,True
+ Active Min,int64,19777,0.11608536914642593,19777,False,True
+Idle Mean,float64,13576,0.0796872615427961,13576,False,True
+ Idle Std,float64,17388,0.10206261812803025,17388,False,True
+ Idle Max,int64,6909,0.040553866381789795,6909,False,True
+ Idle Min,int64,16304,0.09569984621344635,16304,False,True
+ Label,object,4,2.347886315344611e-05,4,True,False
