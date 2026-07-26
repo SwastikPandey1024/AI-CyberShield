@@ -29,10 +29,15 @@ TODO:
 
 from __future__ import annotations
 
+import logging
 from pathlib import Path
 from typing import Optional
 
 import pandas as pd
+
+from ml.preprocessing.column_normalizer import ColumnNormalizer
+
+logger = logging.getLogger(__name__)
 
 
 class DatasetLoadError(Exception):
@@ -221,12 +226,15 @@ class DatasetLoader:
         """
         Read the file into a DataFrame based on its extension.
 
+        Applies column name normalisation immediately after reading, so all
+        downstream callers see canonical (whitespace-cleaned) column names.
+
         Args:
             path: Absolute Path to the file.
             extension: Lowercase file extension (e.g. '.csv').
 
         Returns:
-            pd.DataFrame with file contents.
+            pd.DataFrame with normalised column names.
 
         Raises:
             DatasetLoadError: If pandas fails to parse the file.
@@ -238,14 +246,22 @@ class DatasetLoader:
         """
         try:
             if extension == ".csv":
-                return pd.read_csv(path, low_memory=False)
+                df = pd.read_csv(path, low_memory=False)
             elif extension in {".parquet", ".parq"}:
-                return pd.read_parquet(path)
+                df = pd.read_parquet(path)
+            else:
+                raise DatasetLoadError(f"Unsupported file format: '{extension}'")
         except Exception as exc:
             raise DatasetLoadError(f"Failed to read dataset at '{path}': {exc}") from exc
 
-        # Unreachable in practice; satisfies type checker.
-        raise DatasetLoadError(f"Unexpected error reading: {path}")
+        # Normalise column names immediately — this is the single choke point.
+        normalizer = ColumnNormalizer()
+        mapping = normalizer.build_column_mapping(list(df.columns))
+        if mapping:
+            logger.debug("Column name normalisation applied for %s: %s", path.name, mapping)
+        df.columns = normalizer.normalize_columns(list(df.columns))
+
+        return df
 
     def list_available(self, directory: str | Path | None = None) -> list[Path]:
         """

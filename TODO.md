@@ -1,50 +1,46 @@
-# AI CyberShield — Refactoring Progress
+# Phase 2.4.1 — Ingestion Normalization: Implementation Steps
 
-## REFACTOR 1: Externalize Feature & Label Metadata into Config ✅ COMPLETE
+## Step 1 — Diagnose ✅ (already done, results below)
+```
+File                                                    | Raw "Label"-like header (repr)
+Monday-WorkingHours.pcap_ISCX.csv                       | ' Label'
+Tuesday-WorkingHours.pcap_ISCX.csv                      | ' Label'
+Wednesday-workingHours.pcap_ISCX.csv                    | ' Label'
+Thursday-WorkingHours-Morning-WebAttacks.pcap_ISCX.csv  | ' Label'
+Thursday-WorkingHours-Afternoon-Infilteration.pcap_ISCX.csv | ' Label'
+Friday-WorkingHours-Morning.pcap_ISCX.csv               | ' Label'
+Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv        | ' Label'
+Friday-WorkingHours-Afternoon-PortScan.pcap_ISCX.csv    | ' Label'
+```
+All 8 files have identical header structure: some columns have leading space, some don't. No case differences across files.
 
-- [x] Create `configs/data_dictionary/features.yaml` — 29 feature definitions
-- [x] Create `configs/data_dictionary/attack_mapping.yaml` — 17 label mappings + 9 category indices
-- [x] Rewrite `ml/preprocessing/data_dictionary.py` to load from YAML at import time
-- [x] Preserve backward compatibility: `CICIDS2017_FEATURES`, `CICIDS2017_LABEL_MAPPING`, `CATEGORY_TO_INDEX`
-- [x] All 7 verification tests passed
+## Step 2 — Create `ml/preprocessing/column_normalizer.py`
+- [x] Create `ColumnNormalizer` class with:
+  - `normalize_column_name(name)`: strip whitespace, collapse internal whitespace runs
+  - `normalize_columns(columns)`: apply to list
+  - `build_column_mapping(columns)`: return {raw: canonical} dict
+- [x] Remove `_canonical_name()` from `data_dictionary.py` and update callers
 
-## REFACTOR 2: Config-Driven Preprocessing Pipeline (In Progress)
+## Step 3 — Wire into `DatasetLoader.load()`
+- [x] Apply `ColumnNormalizer().normalize_columns()` after `pd.read_csv()` in `_read_file()`
+- [x] Log `build_column_mapping()` at DEBUG level
 
-### Step 1: Config paths updated ✅
-- [x] Update `data_dictionary.py` default paths to `configs/datasets/cicids2017/`
-- [x] Copy config files to new location
+## Step 4 — Simplify `DatasetValidator`
+- [x] Remove any fuzzy/multi-name matching for target column
+- [x] Use exact lookup since loader now guarantees canonical names
 
-### Step 2: Complete features YAML ✅
-- [x] Generate complete `features.yaml` with all 79 columns from actual CSV data
-- [x] Auto-classify feature types (flow, time, flag, payload, subflow, etc.)
-- [x] Auto-generate descriptions for each feature
-- [x] Verify all 79 features load correctly
+## Step 5 — Audit `DataProfiler`
+- [x] Verify no raw/uncanonicalized column name references (clean — uses `self._target_column` only)
 
-### Step 3: Update dataset_loader.py ✅
-- [x] Add `load_with_standardisation()` method for config-driven column renaming
-- [x] Add `load_and_validate()` convenience method
-- [x] Integrate with `get_raw_to_canonical_mapping()` from data_dictionary
+## Step 6 — Regression test
+- [x] Create `tests/test_column_normalization.py` with 4-header test
 
-### Step 4: Update dataset_validator.py ✅
-- [x] Add `use_catalogue=True` parameter to `validate()` method
-- [x] Auto-build expected_columns and schema from feature catalogue
-- [x] Ensure validation is always consistent with data dictionary
+## Step 7 — Relocate diagnostic script
+- [x] Create `scripts/diagnostics/` directory
+- [x] Move `_diagnose_headers.py` → `scripts/diagnostics/diagnose_headers.py`
 
-### Step 5: Create preprocessing configs ✅
-- [x] Create `configs/preprocessing/cleaning.yaml` — NaN handling, infinite value strategy
-- [x] Create `configs/preprocessing/feature_selection.yaml` — feature groups, correlation thresholds
-- [x] Create `configs/preprocessing/scaling.yaml` — scaler type per feature group
-- [x] Create `configs/preprocessing/__init__.py` — config loader with `load_config()` helper
-- [x] Verify all 3 config files load correctly via `load_config()`
-
-## REFACTOR 3: Config-Driven Model Training (Pending)
-
-- [ ] Create `configs/training/model_params.yaml` — XGBoost hyperparameters
-- [ ] Create `configs/training/cv.yaml` — cross-validation strategy
-- [ ] Refactor `ml/training/` to be config-driven
-
-## REFACTOR 4: Config-Driven Evaluation (Pending)
-
-- [ ] Create `configs/evaluation/metrics.yaml` — metric definitions
-- [ ] Create `configs/evaluation/thresholds.yaml` — pass/fail thresholds
-- [ ] Refactor `ml/evaluation/` to be config-driven
+## Step 8 — Full regression validation
+- [x] `python -m py_compile` on every touched file (all 7 files PASSED)
+- [x] Run regression tests (ColumnNormalizer unit tests + integration tests PASSED)
+- [ ] Run `run_profiling.py` against all 8 files (IN PROGRESS — 1/8 complete)
+- [ ] Report findings

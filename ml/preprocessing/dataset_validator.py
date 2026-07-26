@@ -312,6 +312,9 @@ class DatasetValidator:
         """
         Validate the target/label column if it exists.
 
+        Since the loader now guarantees canonical (whitespace-cleaned) column names,
+        this method does a direct, exact lookup — no fuzzy matching needed.
+
         Checks for existence, missing values, and class distribution.
 
         Args:

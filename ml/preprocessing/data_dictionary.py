@@ -44,6 +44,8 @@ from typing import Any
 
 import yaml
 
+from ml.preprocessing.column_normalizer import ColumnNormalizer
+
 
 # ──────────────────────────────────────────────
 # Default YAML paths
@@ -115,15 +117,7 @@ class FeatureMetadata:
 # ──────────────────────────────────────────────
 
 
-def _canonical_name(raw_name: str) -> str:
-    """Convert a raw column name to a canonical snake_case name."""
-    return (
-        raw_name.strip()
-        .lower()
-        .replace(" ", "_")
-        .replace(".", "_")
-        .replace("-", "_")
-    )
+
 
 
 def _build_category_mapping(
@@ -181,7 +175,7 @@ def load_feature_catalogue(
 
     for entry in features_raw:
         raw_name: str = entry["name"]
-        canonical: str = _canonical_name(raw_name)
+        canonical: str = ColumnNormalizer.to_canonical_name(raw_name)
         category: str = _build_category_mapping(
             entry.get("feature_type", "unknown"),
             _CATEGORY_ALIASES,
