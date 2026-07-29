@@ -9,4 +9,12 @@ sqlalchemy
 pydantic
 python-dotenv
 pytest
+pydantic-settings
+PyYAML
+matplotlib
+seaborn
+scipy
+pyarrow
+
+
 

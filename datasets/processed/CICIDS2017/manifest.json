@@ -1,0 +1,55 @@
+{
+  "dataset": "CICIDS2017",
+  "pipeline_version": "1.0",
+  "random_state": 42,
+  "test_size": 0.2,
+  "val_size": 0.1,
+  "rows": {
+    "train": 1801733,
+    "val": 257391,
+    "test": 514781
+  },
+  "n_features": 75,
+  "files": {
+    "X_train": {
+      "path": "datasets\\processed\\CICIDS2017\\X_train.parquet",
+      "size_bytes": 273066516,
+      "sha256": "16daeccfd04d63bddd86ffe68503ecb6b9e0af63c2676c429e381b9e88498e92"
+    },
+    "X_val": {
+      "path": "datasets\\processed\\CICIDS2017\\X_val.parquet",
+      "size_bytes": 38916465,
+      "sha256": "b0042c05cffd5e5ee74905e31447267cbb5cb1c43bec0facede042ea3dac1131"
+    },
+    "X_test": {
+      "path": "datasets\\processed\\CICIDS2017\\X_test.parquet",
+      "size_bytes": 77676266,
+      "sha256": "d4995878f0f7d16bab18c0db91872a2f463df6405f7d7835f1669f69d0954e3f"
+    },
+    "y_train": {
+      "path": "datasets\\processed\\CICIDS2017\\y_train.parquet",
+      "size_bytes": 503021,
+      "sha256": "1e3ae13c942e7c293bbd84fa47c71beb2b564eb800f944d716e21e687238f7c7"
+    },
+    "y_val": {
+      "path": "datasets\\processed\\CICIDS2017\\y_val.parquet",
+      "size_bytes": 76371,
+      "sha256": "de09155fd02fc66b35b6456db8becca7787af08eff9099933eb80cd1546d1252"
+    },
+    "y_test": {
+      "path": "datasets\\processed\\CICIDS2017\\y_test.parquet",
+      "size_bytes": 147817,
+      "sha256": "907fdb6c0e399082cf584c4cb82b6ce3272451b03e0ac58cb9de1b13551cbd6a"
+    },
+    "scaler": {
+      "path": "datasets\\processed\\CICIDS2017\\scaler.pkl",
+      "size_bytes": 3081,
+      "sha256": "901d7c28a9dd311c50e5b10425fc5519c6b12f9637942083e30ed5a1263c32d5"
+    },
+    "feature_meta": {
+      "path": "datasets\\processed\\CICIDS2017\\feature_meta.json",
+      "size_bytes": 2111,
+      "sha256": "88fc9adbad7553714ee70c1e9590160967663f01211096b0f5e464ef2375db1b"
+    }
+  }
+}

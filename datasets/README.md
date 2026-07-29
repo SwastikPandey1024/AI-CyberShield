@@ -104,3 +104,22 @@ df = pd.read_parquet("datasets/processed/cicids2017_v1_clean.parquet")
 ```
 
 > See `ml/preprocessing/dataset_loader.py` for the production data loader.
+
+---
+
+## Processed Dataset SHA256 Checksums (Phase 2.7 Versioning)
+
+**Manifest File:** `datasets/processed/CICIDS2017/manifest.json`  
+**Pipeline Version:** `1.0`  
+**Preprocessing Audit Log:** `reports/data/eda/preprocessing_log.md`
+
+| Output File | Size | SHA256 Checksum |
+|---|---:|---|
+| `datasets/processed/CICIDS2017/X_train.parquet` | 273,066,516 bytes | `16daeccfd04d63bddd86ffe68503ecb6b9e0af63c2676c429e381b9e88498e92` |
+| `datasets/processed/CICIDS2017/X_val.parquet` | 38,916,465 bytes | `b0042c05cffd5e5ee74905e31447267cbb5cb1c43bec0facede042ea3dac1131` |
+| `datasets/processed/CICIDS2017/X_test.parquet` | 77,676,266 bytes | `d4995878f0f7d16bab18c0db91872a2f463df6405f7d7835f1669f69d0954e3f` |
+| `datasets/processed/CICIDS2017/y_train.parquet` | 503,021 bytes | `1e3ae13c942e7c293bbd84fa47c71beb2b564eb800f944d716e21e687238f7c7` |
+| `datasets/processed/CICIDS2017/y_val.parquet` | 76,371 bytes | `de09155fd02fc66b35b6456db8becca7787af08eff9099933eb80cd1546d1252` |
+| `datasets/processed/CICIDS2017/y_test.parquet` | 147,817 bytes | `907fdb6c0e399082cf584c4cb82b6ce3272451b03e0ac58cb9de1b13551cbd6a` |
+| `datasets/processed/CICIDS2017/scaler.pkl` | 3,081 bytes | `901d7c28a9dd311c50e5b10425fc5519c6b12f9637942083e30ed5a1263c32d5` |
+

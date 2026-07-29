@@ -32,9 +32,12 @@ poetry.lock
 # ──────────────────────────────────────────────
 # ML Artifacts & Model Checkpoints
 # ──────────────────────────────────────────────
-# Track directory structure but ignore actual model files
+# Ignore large/temp model artifacts but track key model metadata and selected model
 ml/artifacts/models/*
 !ml/artifacts/models/.gitkeep
+!ml/artifacts/models/metrics.json
+!ml/artifacts/models/feature_names.json
+!ml/artifacts/models/model.pkl
 ml/artifacts/metadata/*
 !ml/artifacts/metadata/.gitkeep
 ml/artifacts/*.pkl
@@ -42,20 +45,23 @@ ml/artifacts/*.joblib
 ml/artifacts/*.h5
 ml/artifacts/*.pt
 ml/artifacts/*.onnx
-ml/artifacts/*.json
 *.checkpoint*
 *.ckpt
 
 # ──────────────────────────────────────────────
 # Datasets
 # ──────────────────────────────────────────────
-# Ignore all dataset files but track the directory structure.
+# Ignore raw/processed data files but track manifests, logs, and gitkeeps
 datasets/raw/*
 !datasets/raw/.gitkeep
 !datasets/raw/CICIDS2017/.gitkeep
 datasets/raw/CICIDS2017/*
 datasets/processed/*
 !datasets/processed/.gitkeep
+!datasets/processed/CICIDS2017/
+datasets/processed/CICIDS2017/*
+!datasets/processed/CICIDS2017/manifest.json
+!datasets/processed/CICIDS2017/preprocessing_log.md
 datasets/external/*
 !datasets/external/.gitkeep
 datasets/*.csv

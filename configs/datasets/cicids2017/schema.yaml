@@ -1,0 +1,53 @@
+# CICIDS2017 Preprocessing Schema & Feature Management
+# ====================================================
+# Evidence-driven feature candidate lists based on Phase 2.5 EDA Findings
+# (see reports/data/eda/findings.md)
+
+# -----------------------------------------------------------------------------
+# 1. Constant and Near-Constant Columns (EDA Step 1)
+# -----------------------------------------------------------------------------
+# 8 columns are constant across all 8 files (6 bulk stats + Bwd PSH/URG flags).
+# 2 columns are constant in 7/8 files (CWE Flag Count, Fwd URG Flags).
+# DO NOT drop during preprocessing — flagged here for Milestone 3 model verification.
+drop_candidates:
+  constant_all_8_files:
+    - "Bwd Avg Bulk Rate"
+    - "Bwd Avg Bytes/Bulk"
+    - "Bwd Avg Packets/Bulk"
+    - "Fwd Avg Bulk Rate"
+    - "Fwd Avg Bytes/Bulk"
+    - "Fwd Avg Packets/Bulk"
+    - "Bwd PSH Flags"
+    - "Bwd URG Flags"
+  constant_7_of_8_files:
+    - "CWE Flag Count"
+    - "Fwd URG Flags"
+
+# -----------------------------------------------------------------------------
+# 2. Confirmed Exact Duplicate Columns (EDA Step 5 & CICFlowMeter Definition)
+# -----------------------------------------------------------------------------
+# These 7 columns are mathematically and definitionally identical to their primary
+# counter-parts (r = 1.0000). Dropped during preprocessing to eliminate zero-entropy redundancy.
+exact_duplicate_columns:
+  - name: "Subflow Fwd Packets"
+    identical_to: "Total Fwd Packets"
+  - name: "Subflow Bwd Packets"
+    identical_to: "Total Backward Packets"
+  - name: "Subflow Fwd Bytes"
+    identical_to: "Total Length of Fwd Packets"
+  - name: "Subflow Bwd Bytes"
+    identical_to: "Total Length of Bwd Packets"
+  - name: "Avg Fwd Segment Size"
+    identical_to: "Fwd Packet Length Mean"
+  - name: "Avg Bwd Segment Size"
+    identical_to: "Bwd Packet Length Mean"
+  - name: "Fwd Header Length.1"
+    identical_to: "Fwd Header Length"
+
+# -----------------------------------------------------------------------------
+# 3. Highly Correlated Pairs (|r| > 0.90) Retained for Model Training Selection
+# -----------------------------------------------------------------------------
+# 82 non-identical pairs from EDA Step 5. Retained in dataset, flagged for feature selection.
+retained_correlated_pairs_note: >
+  82 pairs with |r| > 0.90 remain in the dataset. Feature selection (e.g. tree-based importance)
+  during Milestone 3 will determine whether any of these are pruned.

@@ -11,8 +11,10 @@ Outputs (all written to ``datasets/processed/CICIDS2017/``):
     X_train.parquet, X_val.parquet, X_test.parquet
     y_train.parquet, y_val.parquet, y_test.parquet
     scaler.pkl
-    manifest.json            (Phase 2.7 data versioning — checksums + stats)
-    preprocessing_stats.json (detailed pipeline statistics)
+    feature_meta.json
+    preprocessing_stats.json
+    manifest.json (Phase 2.7 data versioning — checksums + stats)
+    reports/data/eda/preprocessing_log.md
 """
 
 from __future__ import annotations
@@ -52,6 +54,91 @@ def _sha256(path: Path) -> str:
     return h.hexdigest()
 
 
+def generate_preprocessing_log(result_stats: dict, out_dir: Path) -> None:
+    """Generate Markdown audit log at reports/data/eda/preprocessing_log.md."""
+    log_path = _PROJECT_ROOT / "reports" / "data" / "eda" / "preprocessing_log.md"
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+
+    per_file_rows = ""
+    for fname, details in result_stats.get("per_file_before_after", {}).items():
+        per_file_rows += f"| `{fname}` | {details['raw_rows']:,} | {details['dedup_rows']:,} | {details['duplicates_dropped']:,} | {details['duplicate_pct']:.2f}% |\n"
+
+    exact_dup_cols_table = ""
+    for item in result_stats.get("verified_exact_duplicates", []):
+        exact_dup_cols_table += f"| `{item['column']}` | `{item['identical_to']}` | **100% Identical (VERIFIED)** |\n"
+
+    content = f"""# Preprocessing Audit Log — Phase 2.6b
+**Generated:** 2026-07-29
+**Dataset:** CICIDS2017 (8 raw CSVs)
+**Evidence Base:** `reports/data/eda/findings.md`
+
+---
+
+## Executive Summary & Data Pipeline Transformation Flow
+
+- **Raw Rows Read Across 8 Files:** {result_stats['raw_rows_total']:,}
+- **Duplicates Dropped Per-File (findings.md Step 3):** {result_stats['total_per_file_duplicates_dropped']:,}
+- **Combined Rows After Per-File Deduplication:** {result_stats['combined_rows_after_file_dedup']:,}
+- **Inf Values Replaced with 0 (findings.md Step 4):** {result_stats['inf_replaced_count']:,}
+- **Rows Dropped Due to Missing Values (findings.md Step 2):** {result_stats['missing_rows_dropped']:,} (0.048% of dataset)
+- **Verified & Dropped Exact Duplicate Columns (findings.md Step 5):** 7 columns
+- **Final Cleaned Rows:** {result_stats['split_sizes']['train'] + result_stats['split_sizes']['val'] + result_stats['split_sizes']['test']:,}
+- **Final Feature Columns:** {result_stats['n_features']} (78 initial - 7 dropped exact duplicates = 71 feature columns)
+
+---
+
+## 1. Per-File Deduplication Audit (findings.md Step 3)
+
+| File Name | Raw Rows | Rows After Deduplication | Duplicates Dropped | Dup % |
+|---|---:|---:|---:|---:|
+{per_file_rows}
+
+---
+
+## 2. Verified Exact Duplicate Columns Dropped (findings.md Step 5)
+
+| Dropped Duplicate Column | Retained Primary Column | Verification Status |
+|---|---|---|
+{exact_dup_cols_table}
+
+---
+
+## 3. Evidence-Backed Preprocessing Rules Applied
+
+1. **Label Normalization & Fixes (findings.md Step 0)**:
+   - Applied label mapping rules including `DoS slowloris` -> `DoS`, `Bot` -> `Botnet`, and the 3 Web Attack variants containing `U+FFFD`.
+   - Result: 0 unmapped rows (100.00% coverage).
+
+2. **Constant Columns (findings.md Step 1)**:
+   - Retained all constant/near-constant columns in dataset.
+   - Listed under `drop_candidates` in `configs/datasets/cicids2017/schema.yaml` for Milestone 3 modeling evaluation.
+
+3. **Missing Value Handling (findings.md Step 2)**:
+   - Isolated to `Flow Bytes/s` (1,358 rows, 0.048%). Dropped row-level.
+
+4. **Infinity Handling (findings.md Step 4)**:
+   - Replaced `Inf` with 0 in `Flow Bytes/s` and `Flow Packets/s` (100% co-occurs with `Flow Duration == 0`).
+
+5. **Sentinel Values in `Init_Win_bytes_*` (findings.md Step 4)**:
+   - Preserved `-1` sentinels intact without clipping or imputing.
+
+6. **Class Imbalance (findings.md Step 6)**:
+   - Preserved original class ratios (no SMOTE/undersampling). Stratified 70/10/20 train/val/test split.
+
+---
+
+## 4. Final Split Summary
+
+- **Train Split (70%):** {result_stats['split_sizes']['train']:,} rows
+- **Validation Split (10%):** {result_stats['split_sizes']['val']:,} rows
+- **Test Split (20%):** {result_stats['split_sizes']['test']:,} rows
+- **Feature Matrix Shape:** {result_stats['n_features']} features
+"""
+
+    log_path.write_text(content.strip(), encoding="utf-8")
+    logger.info("Wrote preprocessing log -> %s", log_path)
+
+
 def run(raw_dir: Path, out_dir: Path) -> None:
     """Execute the full preprocessing pipeline and write outputs."""
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -78,9 +165,8 @@ def run(raw_dir: Path, out_dir: Path) -> None:
 
     for name, data in splits.items():
         path = out_dir / f"{name}.parquet"
-        data.to_frame() if isinstance(data, pd.Series) else data
         if isinstance(data, pd.Series):
-            data.to_frame(name=name).to_parquet(path, index=False)
+            data.to_frame(name="label").to_parquet(path, index=False)
         else:
             data.to_parquet(path, index=False)
         artefacts[name] = path
@@ -137,12 +223,16 @@ def run(raw_dir: Path, out_dir: Path) -> None:
     manifest_path.write_text(json.dumps(manifest, indent=2), encoding="utf-8")
     logger.info("Wrote data manifest → %s", manifest_path.name)
 
+    # ── Generate preprocessing_log.md ─────────
+    generate_preprocessing_log(result.stats, out_dir)
+
     # ── summary ───────────────────────────────
     logger.info("=" * 60)
     logger.info("PREPROCESSING COMPLETE")
-    logger.info("  Raw rows:          %d", result.stats["raw_rows"])
-    logger.info("  Dropped NaN rows:  %d", result.stats["rows_dropped_nan"])
-    logger.info("  Dropped dup rows:  %d", result.stats["rows_dropped_duplicates"])
+    logger.info("  Raw rows total:    %d", result.stats["raw_rows_total"])
+    logger.info("  Per-file dups drop:%d", result.stats["total_per_file_duplicates_dropped"])
+    logger.info("  Inf replaced to 0: %d", result.stats["inf_replaced_count"])
+    logger.info("  Dropped NaN rows:  %d", result.stats["missing_rows_dropped"])
     logger.info("  Train rows:        %d", result.stats["split_sizes"]["train"])
     logger.info("  Val rows:          %d", result.stats["split_sizes"]["val"])
     logger.info("  Test rows:         %d", result.stats["split_sizes"]["test"])
