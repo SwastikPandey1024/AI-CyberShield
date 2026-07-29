@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI CyberShield — Threat Detection Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dark-mode">
+  <div class="app-container">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <i class="fa-solid fa-shield-halved brand-icon"></i>
+        <div class="brand-text">
+          <h2>AI CyberShield</h2>
+          <span class="version">v1.0.0 • ML-IDS</span>
+        </div>
+      </div>
+      <nav class="nav-menu">
+        <a href="#dashboard" class="nav-item active"><i class="fa-solid fa-chart-line"></i> Threat Monitor</a>
+        <a href="#predictor" class="nav-item"><i class="fa-solid fa-bolt"></i> Live Predictor</a>
+        <a href="#history" class="nav-item"><i class="fa-solid fa-list-check"></i> Audit Log</a>
+        <a href="#models" class="nav-item"><i class="fa-solid fa-brain"></i> Model Intel</a>
+      </nav>
+      <div class="system-status-box">
+        <div class="status-indicator online"></div>
+        <div class="status-info">
+          <span class="status-title">Model Ready</span>
+          <span class="status-desc">RandomForest • 99.93% Acc</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Bar Header -->
+      <header class="top-bar">
+        <div class="page-title">
+          <h1>Network Security Operations</h1>
+          <p>Real-Time Intrusion Detection & Threat Classification Dashboard</p>
+        </div>
+        <div class="header-actions">
+          <span class="badge badge-success"><i class="fa-solid fa-circle-check"></i> API Online</span>
+          <span class="badge badge-info"><i class="fa-solid fa-layer-group"></i> CICIDS2017 Model</span>
+          <button class="btn btn-secondary" id="btn-refresh"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+        </div>
+      </header>
+
+      <!-- KPI Metrics Grid -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span>Total Flows Scanned</span>
+            <i class="fa-solid fa-network-wired kpi-icon text-cyan"></i>
+          </div>
+          <div class="kpi-value" id="kpi-total">2,573,905</div>
+          <div class="kpi-subtext text-muted">Test Split Validation Dataset</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span>Threat Detection Ratio</span>
+            <i class="fa-solid fa-triangle-exclamation kpi-icon text-amber"></i>
+          </div>
+          <div class="kpi-value" id="kpi-threat-ratio">16.51%</div>
+          <div class="kpi-subtext text-danger">425,175 Malicious Flows Detected</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span>Model Macro F1-Score</span>
+            <i class="fa-solid fa-award kpi-icon text-emerald"></i>
+          </div>
+          <div class="kpi-value" id="kpi-macro-f1">0.9637</div>
+          <div class="kpi-subtext text-emerald">+19.4% Over Baseline DecisionTree</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-header">
+            <span>Inference Latency</span>
+            <i class="fa-solid fa-bolt-lightning kpi-icon text-purple"></i>
+          </div>
+          <div class="kpi-value" id="kpi-latency">4.2 ms</div>
+          <div class="kpi-subtext text-muted">Sub-10ms Target SLA Passed</div>
+        </div>
+      </section>
+
+      <!-- Live Predictor & Probability Section -->
+      <section class="content-grid">
+        <!-- Input Form Card -->
+        <div class="card predictor-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-sliders"></i> Flow Feature Simulator</h3>
+            <div class="preset-selector">
+              <span>Attack Preset:</span>
+              <button class="preset-btn" data-preset="benign">BENIGN</button>
+              <button class="preset-btn" data-preset="dos">DoS</button>
+              <button class="preset-btn" data-preset="portscan">PortScan</button>
+              <button class="preset-btn" data-preset="webattack">WebAttack</button>
+              <button class="preset-btn" data-preset="botnet">Botnet</button>
+            </div>
+          </div>
+          <form id="prediction-form" class="feature-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>Destination Port</label>
+                <input type="number" id="feat-dst-port" value="80">
+              </div>
+              <div class="form-group">
+                <label>Flow Duration (µs)</label>
+                <input type="number" id="feat-duration" value="125000">
+              </div>
+              <div class="form-group">
+                <label>Total Fwd Packets</label>
+                <input type="number" id="feat-fwd-pkts" value="12">
+              </div>
+              <div class="form-group">
+                <label>Total Backward Packets</label>
+                <input type="number" id="feat-bwd-pkts" value="10">
+              </div>
+              <div class="form-group">
+                <label>Flow Bytes/s</label>
+                <input type="number" id="feat-bytes-sec" value="45000">
+              </div>
+              <div class="form-group">
+                <label>Flow Packets/s</label>
+                <input type="number" id="feat-pkts-sec" value="176">
+              </div>
+              <div class="form-group">
+                <label>SYN Flag Count</label>
+                <input type="number" id="feat-syn-flags" value="1">
+              </div>
+              <div class="form-group">
+                <label>ACK Flag Count</label>
+                <input type="number" id="feat-ack-flags" value="1">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fa-solid fa-microchip"></i> Run AI Classification
+            </button>
+          </form>
+        </div>
+
+        <!-- Prediction Result Output Card -->
+        <div class="card result-card">
+          <div class="card-header">
+            <h3><i class="fa-solid fa-bullseye"></i> Classification Verdict</h3>
+            <span class="badge badge-dark" id="verdict-time">Ready</span>
+          </div>
+          <div class="verdict-container" id="verdict-container">
+            <div class="verdict-banner benign" id="verdict-banner">
+              <div class="verdict-icon"><i class="fa-solid fa-shield-check" id="verdict-icon"></i></div>
+              <div class="verdict-details">
+                <span class="verdict-label">Predicted Category</span>
+                <h2 class="verdict-title" id="verdict-title">BENIGN</h2>
+                <div class="confidence-bar-wrapper">
+                  <div class="confidence-fill" id="confidence-fill" style="width: 98%;"></div>
+                </div>
+                <span class="confidence-text" id="confidence-text">Confidence: 98.42%</span>
+              </div>
+            </div>
+
+            <div class="probabilities-section">
+              <h4>Class Probabilities Breakout</h4>
+              <div class="prob-list" id="prob-list">
+                <!-- Dynamically filled -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Recent Threat Audit Log Table -->
+      <section class="card audit-card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-clock-rotate-left"></i> Security Event Audit Log</h3>
+          <div class="filter-controls">
+            <input type="text" placeholder="Filter category..." id="table-search" class="input-search">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Source IP</th>
+                <th>Destination Port</th>
+                <th>Verdict</th>
+                <th>Confidence</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="audit-table-body">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
