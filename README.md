@@ -45,17 +45,20 @@ AI CyberShield addresses these challenges by combining modern machine learning t
 ## ✨ Features
 
 ### Currently Implemented
-- ✅ Project scaffolding and modular architecture
-- ✅ Python 3.12 development environment (Black, Ruff, isort, pytest)
-- ✅ Clean package structure for backend, ML pipeline, and tests
+- ✅ Project scaffolding and modular architecture (Python 3.13)
+- ✅ Complete CICIDS2017 EDA, data profiling, and schema validation
+- ✅ Evidence-driven preprocessing pipeline (2.57M clean rows, 75 features, zero unmapped labels)
+- ✅ Stratified train/val/test data versioning with SHA256 checksum manifests
+- ✅ DecisionTree baseline model evaluation
+- ✅ RandomForest (class-balanced) & XGBoost ensemble models trained & evaluated
+- ✅ Selected RandomForest model (99.93% accuracy, 0.9637 Macro F1) exported to `ml/artifacts/models/`
 
-### In Development
-- 🔄 CICIDS2017 dataset preprocessing pipeline
-- 🔄 Feature engineering and selection
-- 🔄 XGBoost model training with hyperparameter tuning
-- 🔄 REST API for single and batch predictions
-- 🔄 PostgreSQL-backed prediction history
-- 🔄 Threat detection dashboard with visualizations
+### In Development / Future
+- 🔄 REST API for single and batch predictions (FastAPI backend)
+- 🔄 Threat detection dashboard with real-time visualizations (React + TS)
+- 🔄 Live packet sniffing and PCAP feature extraction
+- 🔄 PostgreSQL storage for prediction history and security event logging
+- 🔄 Docker containerization for one-command deployment
 
 ### Future
 - 📋 Live packet sniffing and real-time detection
@@ -331,8 +334,8 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 **AI CyberShield Team**
 
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Project Link: [https://github.com/yourusername/AI-CyberShield](https://github.com/yourusername/AI-CyberShield)
+- GitHub: [@SwastikPandey1024](https://github.com/SwastikPandey1024)
+- Project Link: [https://github.com/SwastikPandey1024/ai-cybershield](https://github.com/SwastikPandey1024/ai-cybershield)
 
 ---
 
