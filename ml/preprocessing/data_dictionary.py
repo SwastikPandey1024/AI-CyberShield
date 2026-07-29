@@ -268,9 +268,38 @@ CATEGORY_TO_INDEX: dict[str, int] = load_category_to_index()
 # ──────────────────────────────────────────────
 
 
+def normalize_raw_label(raw_label: str) -> str:
+    """
+    Normalise a raw label string before YAML key lookup.
+
+    CICIDS2017 Web Attack labels contain U+FFFD (the Unicode Replacement
+    Character, 0xef 0xbf 0xbd) as a separator — confirmed by binary read on
+    2026-07-29. Stripping U+FFFD and collapsing the resulting double-space
+    produces ``'Web Attack Brute Force'`` which matches the YAML key.
+
+    This is the only place in the pipeline that applies label normalisation.
+    All other modules call ``encode_label`` which invokes this automatically.
+
+    Args:
+        raw_label: The raw label string as read from the dataset.
+
+    Returns:
+        Normalised label string ready for YAML key lookup.
+    """
+    import re
+    # Strip U+FFFD (binary artefact in CICIDS2017 Web Attack labels)
+    normalised = raw_label.replace("\ufffd", "")
+    # Collapse multiple consecutive spaces produced by stripping
+    normalised = re.sub(r"  +", " ", normalised)
+    return normalised.strip()
+
+
 def encode_label(raw_label: str) -> AttackCategory:
     """
     Map a raw label string from the dataset to a canonical ``AttackCategory``.
+
+    Applies ``normalize_raw_label`` before lookup to handle known encoding
+    artefacts in CICIDS2017 (U+FFFD separator in Web Attack labels).
 
     Args:
         raw_label: The label string from the dataset (e.g. ``'DoS Hulk'``).
@@ -278,12 +307,9 @@ def encode_label(raw_label: str) -> AttackCategory:
     Returns:
         Corresponding ``AttackCategory`` enum value.
         Returns ``AttackCategory.UNKNOWN`` if the label is not recognised.
-
-    TODO:
-        - Add fuzzy matching for slight variations in label strings.
-        - Add logging for unrecognised labels.
     """
-    return CICIDS2017_LABEL_MAPPING.get(raw_label, AttackCategory.UNKNOWN)
+    normalised = normalize_raw_label(raw_label)
+    return CICIDS2017_LABEL_MAPPING.get(normalised, AttackCategory.UNKNOWN)
 
 
 def encode_label_to_int(raw_label: str) -> int:

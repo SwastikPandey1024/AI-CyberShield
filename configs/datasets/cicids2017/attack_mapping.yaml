@@ -16,6 +16,7 @@ label_to_category:
   DoS Hulk: DoS
   DoS GoldenEye: DoS
   DoS Slowloris: DoS
+  DoS slowloris: DoS        # EDA Step 0: CSV uses lowercase 's' — alias added 2026-07-29
   DoS Slowhttptest: DoS
   # DDoS
   DDoS: DDoS
@@ -32,6 +33,7 @@ label_to_category:
   Web Attack Sql Injection: WebAttack
   # Botnet
   Botnet: Botnet
+  Bot: Botnet               # EDA Step 0: CSV uses 'Bot' not 'Botnet' — alias added 2026-07-29
   # Infiltration
   Infiltration: Infiltration
   Heartbleed: Infiltration
