@@ -11,26 +11,28 @@
 | Database models + Alembic migrations | ⬜ |
 | CI lint workflow | ⬜ |
 
-## Phase 1: Data Profiling Engine ⬜ (In Progress)
+## Phase 1: Data Profiling Engine ✅ (Complete)
 
 | Task | Status |
 |------|--------|
-| YAML configuration system | ⬜ |
-| CICIDS2017 download script | ⬜ |
-| Profiling package (univariate, bivariate, missing, class balance) | ⬜ |
-| Profiling report generation (JSON + visualizations) | ⬜ |
-| Run profiler against real CICIDS2017 data | ⬜ |
-| Reviewer-applied addendum: profiling spec implementation | ⬜ |
+| YAML configuration system (`attack_mapping.yaml`, `features.yaml`, `schema.yaml`) | ✅ |
+| CICIDS2017 download / raw storage verification | ✅ |
+| Profiling package (univariate, bivariate, missing, class balance) | ✅ |
+| Profiling report generation (`summary.json` per file) | ✅ |
+| Evidence-driven EDA findings report (`reports/data/eda/findings.md`) | ✅ |
 
-## Phase 2: ML Pipeline ⬜
+## Phase 2: ML Pipeline 🔄 (In Progress)
 
 | Task | Status |
 |------|--------|
-| Preprocessing pipeline (cleaning, encoding, scaling, feature selection) | ⬜ |
+| Phase 2.5: Evidence-driven EDA & Step 0 byte-level label verification | ✅ |
+| Phase 2.6: Preprocessing pipeline (per-file dedup, Inf->0, missing drop, scaling) | ✅ |
+| Phase 2.7: Data versioning & manifest SHA256 checksum generation (`manifest.json`) | ✅ |
 | Model training + hyperparameter tuning (XGBoost + Scikit-learn) | ⬜ |
-| Model evaluation (per-class metrics, confusion matrix, ROC curves) | ⬜ |
+| Model evaluation (per-class metrics, confusion matrix, PR curves) | ⬜ |
 | Artifact export (model + fitted scalers/encoders) | ⬜ |
 | Inference module | ⬜ |
+
 
 ## Phase 3: API + Services ⬜
 
