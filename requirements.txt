@@ -16,7 +16,6 @@ seaborn
 scipy
 pyarrow
 httpx
-httpx2
 
 
 

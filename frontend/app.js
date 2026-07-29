@@ -3,7 +3,7 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "http://localhost:8000/api/v1/predict/single";
+  const API_URL = window.CYBERSHIELD_API_URL || (window.location.origin.includes(":3000") ? "http://localhost:8000/api/v1/predict/single" : `${window.location.origin}/api/v1/predict/single`);
 
   // Pre-configured Attack Feature Presets
   const PRESETS = {
