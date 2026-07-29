@@ -32,12 +32,12 @@ poetry.lock
 # ──────────────────────────────────────────────
 # ML Artifacts & Model Checkpoints
 # ──────────────────────────────────────────────
-# Ignore large/temp model artifacts but track key model metadata and selected model
+# Ignore large model artifacts but track metadata (metrics, feature names)
+# model.pkl (57 MB+) is excluded — retrain or download separately
 ml/artifacts/models/*
 !ml/artifacts/models/.gitkeep
 !ml/artifacts/models/metrics.json
 !ml/artifacts/models/feature_names.json
-!ml/artifacts/models/model.pkl
 ml/artifacts/metadata/*
 !ml/artifacts/metadata/.gitkeep
 ml/artifacts/*.pkl

@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
-- Python 3.12+
-- PostgreSQL 15+ (optional, SQLite for local development)
+- Python 3.12+ (developed on 3.13)
+- Docker (recommended)
 - Git
 - Docker (recommended)
 - VS Code (recommended)

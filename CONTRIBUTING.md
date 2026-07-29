@@ -98,7 +98,7 @@ We enforce strict code style through automated tooling:
 
 | Tool | Purpose | Configuration |
 |------|---------|---------------|
-| **Black** | Code formatting | Line length 88, Python 3.12 |
+| **Black** | Code formatting | Line length 88, Python 3.12+ |
 | **Ruff** | Linting | Rules: E, F, I, W, UP, N, D |
 | **isort** | Import ordering | Black-compatible profile |
 | **mypy** | Static type checking | Strict mode |

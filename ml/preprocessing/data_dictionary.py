@@ -11,7 +11,7 @@ This module serves as the single source of truth for:
 
 WHY CONFIG-DRIVEN:
     Feature definitions and label mappings are loaded from YAML files in
-    ``configs/data_dictionary/`` at import time rather than being hardcoded
+    ``configs/datasets/cicids2017/`` at import time rather than being hardcoded
     as Python dict literals. This means a future dataset like UNSW-NB15
     only requires a new YAML file — no Python code changes are needed.
 
@@ -251,15 +251,15 @@ def load_category_to_index(
 # ──────────────────────────────────────────────
 
 #: List of ``FeatureMetadata`` for the CICIDS2017 dataset.
-#: Loaded from ``configs/data_dictionary/features.yaml``.
+#: Loaded from ``configs/datasets/cicids2017/features.yaml``.
 CICIDS2017_FEATURES: list[FeatureMetadata] = load_feature_catalogue()
 
 #: Mapping of raw CICIDS2017 Label column values to canonical ``AttackCategory`` enum.
-#: Loaded from ``configs/data_dictionary/attack_mapping.yaml``.
+#: Loaded from ``configs/datasets/cicids2017/attack_mapping.yaml``.
 CICIDS2017_LABEL_MAPPING: dict[str, AttackCategory] = load_label_mapping()
 
 #: Mapping of canonical category names to integer indices for model training.
-#: Loaded from ``configs/data_dictionary/attack_mapping.yaml``.
+#: Loaded from ``configs/datasets/cicids2017/attack_mapping.yaml``.
 CATEGORY_TO_INDEX: dict[str, int] = load_category_to_index()
 
 

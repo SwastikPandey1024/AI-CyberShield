@@ -22,8 +22,8 @@ The project requires a technology stack that supports:
 | **Backend Framework** | FastAPI | ≥ 0.110 |
 | **ML Framework** | scikit-learn + XGBoost | ≥ 1.4 / ≥ 2.0 |
 | **Database** | PostgreSQL + SQLAlchemy | 15+ / 2.0+ |
-| **Frontend** | React + TypeScript + Tailwind CSS | Latest |
-| **Visualization** | Recharts | Latest |
+| **Frontend** | HTML + CSS + JavaScript | — |
+| **Visualization** | Chart.js (planned) | Latest |
 | **Containerization** | Docker + Docker Compose | Latest |
 | **Testing** | Pytest | ≥ 8.0 |
 | **Linting** | Black + Ruff + isort + mypy | Latest |

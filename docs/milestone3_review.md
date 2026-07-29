@@ -39,7 +39,6 @@ Three candidate models were trained and evaluated on the held-out test split usi
 | `Infiltration` | 0.5000 | 0.9412 (0.8889 Rec) | 0.8571 (1.0000 Rec) | 9 |
 | `Unknown` | 0.0000 | 0.0000 (0.0000 Rec) | 0.0000 (0.0000 Rec) | 0 |
 
-
 ---
 
 ## 3. Selected Model & Justification
@@ -49,10 +48,10 @@ Three candidate models were trained and evaluated on the held-out test split usi
 **Justification:**
 1. **Highest Macro F1-Score**: RandomForest achieved a Macro F1-score of **0.9637**, outperforming XGBoost (0.9483) and the Baseline (0.8071).
 2. **Dramatic Recovery on Rare Classes**:
-   - **`Botnet` (391 test samples)**: Baseline F1 was **0.0296** (1.53% Recall). RandomForest balanced class weighting boosted `Botnet` Recall to **79.54%** and F1 to **0.8651** — a 29x improvement in detection capability.
-   - **`WebAttack` (429 test samples)**: F1 improved from **0.9456** (Baseline) to **0.9634** (RandomForest) with **93.71% Recall**.
-   - **`Infiltration` (9 test samples)**: Achieved **88.89% Recall** (8 out of 9 test samples detected), yielding an F1-score of **0.8889** compared to Baseline's 0.5000.
-3. **Near-Perfect Protection on Dominant Traffic**: Achieved **99.96% F1** on `BENIGN` traffic and $\ge 99.7\%$ F1 across `DoS`, `DDoS`, `PortScan`, and `BruteForce`.
+   - **`Botnet` (391 test samples)**: Baseline F1 was **0.0296** (1.53% Recall). RandomForest balanced class weighting boosted `Botnet` Recall to **95.40%** and F1 to **0.7945** — a massive improvement in threat detection capability.
+   - **`WebAttack` (429 test samples)**: F1 improved from **0.9456** (Baseline) to **0.9837** (RandomForest) with **98.60% Recall**.
+   - **`Infiltration` (9 test samples)**: Achieved **88.89% Recall** (8 out of 9 test samples detected), yielding an F1-score of **0.9412** compared to Baseline's 0.5000.
+3. **Near-Perfect Protection on Dominant Traffic**: Achieved **99.93% F1** on `BENIGN` traffic and $\ge 99.3\%$ F1 across `DoS`, `DDoS`, `PortScan`, and `BruteForce`.
 
 ---
 
@@ -60,13 +59,13 @@ Three candidate models were trained and evaluated on the held-out test split usi
 
 While RandomForest with balanced class weights significantly elevates threat detection across rare classes, empirical evaluation reveals the following remaining limitations:
 
-1. **Infiltration Sample Size**: `Infiltration` contains only 36 total rows across the 2.83M dataset (9 test samples). While RandomForest detected 8 out of 9 test instances, precision is 0.8889 due to 1 false positive. Production deployment should flag `Infiltration` alerts as high-priority candidates for analyst verification due to low sample support.
-2. **Botnet False Positives**: `Botnet` precision is 0.9482 with 79.54% recall. Approximately 20% of `Botnet` flows are missed or confused with `BENIGN` due to shared baseline TCP characteristics.
+1. **Infiltration Sample Size**: `Infiltration` contains only 36 total rows across the 2.83M dataset (9 test samples). While RandomForest detected 8 out of 9 test instances (0.8889 recall), precision is 1.0000. Production deployment should flag `Infiltration` alerts as high-priority candidates for analyst verification due to low overall sample support in training.
+2. **Botnet Precision vs. Recall**: `Botnet` recall is high at 95.40%, but precision is 0.6807 (F1 = 0.7945). Approximately 175 benign flows were misclassified as `Botnet` due to overlapping TCP statistical characteristics in baseline network activity.
 
 ---
 
 ## 5. Artifact Export Verification
 
-- **Trained Model**: `ml/artifacts/models/model.pkl` (C:\Users\Swastik Pandey\OneDrive\Documents\AI CyberShield\ml\artifacts\models\model.pkl)
-- **Model Metrics**: `ml/artifacts/models/metrics.json` (C:\Users\Swastik Pandey\OneDrive\Documents\AI CyberShield\ml\artifacts\models\metrics.json)
-- **Feature Names**: `ml/artifacts/models/feature_names.json` (C:\Users\Swastik Pandey\OneDrive\Documents\AI CyberShield\ml\artifacts\models\feature_names.json)
+- **Trained Model**: `ml/artifacts/models/model.pkl`
+- **Model Metrics**: `ml/artifacts/models/metrics.json`
+- **Feature Names**: `ml/artifacts/models/feature_names.json`

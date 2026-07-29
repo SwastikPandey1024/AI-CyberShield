@@ -11,7 +11,7 @@
 ## Python Standards
 
 ### Version
-- Python 3.12+
+- Python 3.12+ (developed on 3.13)
 - Use new-style type hints and features
 
 ### Formatting (Black)

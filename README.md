@@ -1,6 +1,6 @@
 <p align="center">
   <img src="https://img.shields.io/badge/status-in--development-yellow" alt="Status">
-  <img src="https://img.shields.io/badge/python-3.12-blue" alt="Python">
+  <img src="https://img.shields.io/badge/python-3.13-blue" alt="Python">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen" alt="PRs Welcome">
 </p>
@@ -22,8 +22,7 @@ AI CyberShield is an intelligent intrusion detection system that leverages machi
 The platform is built as a modular, production-ready system with:
 - A **FastAPI** backend serving RESTful prediction APIs
 - A **scikit-learn / XGBoost** ML pipeline for training and inference
-- A **React + TypeScript** dashboard for real-time visualization
-- **PostgreSQL** storage for prediction history and metrics
+- A **glassmorphic dashboard** (HTML/CSS/JS) for real-time threat visualization
 - **Docker** containerization for reproducible deployment
 
 ---
@@ -52,20 +51,16 @@ AI CyberShield addresses these challenges by combining modern machine learning t
 - ✅ DecisionTree baseline model evaluation
 - ✅ RandomForest (class-balanced) & XGBoost ensemble models trained & evaluated
 - ✅ Selected RandomForest model (99.93% accuracy, 0.9637 Macro F1) exported to `ml/artifacts/models/`
-
-### In Development / Future
-- 🔄 REST API for single and batch predictions (FastAPI backend)
-- 🔄 Threat detection dashboard with real-time visualizations (React + TS)
-- 🔄 Live packet sniffing and PCAP feature extraction
-- 🔄 PostgreSQL storage for prediction history and security event logging
-- 🔄 Docker containerization for one-command deployment
+- ✅ REST API for single and batch predictions (FastAPI backend)
+- ✅ Threat detection dashboard with interactive preset simulator
+- ✅ Docker containerization for one-command deployment
 
 ### Future
 - 📋 Live packet sniffing and real-time detection
+- 📋 PostgreSQL storage for prediction history and security event logging
 - 📋 Kafka streaming for high-throughput data ingestion
 - 📋 SIEM integration (Splunk, Elastic, etc.)
 - 📋 Threat intelligence feed enrichment
-- 📋 Multi-model ensemble for improved accuracy
 - 📋 User authentication and role-based access
 - 📋 Kubernetes deployment for horizontal scaling
 
@@ -91,7 +86,7 @@ AI CyberShield addresses these challenges by combining modern machine learning t
                            │
                     ┌──────▼───────┐
                     │  ML Model    │
-                    │  (XGBoost)   │
+                    │(RandomForest)│
                     └──────┬───────┘
                            │
                     ┌──────▼───────┐
@@ -102,11 +97,6 @@ AI CyberShield addresses these challenges by combining modern machine learning t
                     ┌──────▼───────┐
                     │  CICIDS2017  │
                     │   Dataset    │
-                    └──────┬───────┘
-                           │
-                    ┌──────▼───────┐
-                    │  PostgreSQL  │
-                    │  + Logging   │
                     └──────────────┘
 ```
 
@@ -117,16 +107,13 @@ For detailed architecture documentation, see [`docs/architecture.md`](docs/archi
 ## 🛠️ Technology Stack
 
 | Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Frontend** | React + TypeScript + Tailwind CSS | Interactive dashboard |
-| **Backend** | FastAPI (Python 3.12) | High-performance REST API |
+|-------|-----------| --------|
+| **Frontend** | HTML + CSS + JavaScript | Glassmorphic threat detection dashboard |
+| **Backend** | FastAPI (Python 3.13) | High-performance REST API |
 | **Machine Learning** | scikit-learn, XGBoost | Model training & inference |
-| **Database** | PostgreSQL + SQLAlchemy | Prediction history & metrics |
-| **Visualization** | Chart.js / Recharts | Analytics dashboards |
 | **Containerization** | Docker + Docker Compose | Reproducible deployment |
 | **Testing** | Pytest, pytest-cov | Unit & integration testing |
-| **Linting** | Black, Ruff, isort, mypy | Code quality enforcement |
-| **CI/CD** | GitHub Actions | Automated testing & deployment |
+| **Linting** | Black, Ruff, isort | Code quality enforcement |
 
 ---
 
@@ -138,12 +125,10 @@ AI-CyberShield/
 ├── backend/              # FastAPI application
 │   └── app/
 │       ├── api/          # Route handlers
-│       ├── core/         # Configuration & settings
-│       ├── database/     # DB connection & session management
-│       ├── models/       # SQLAlchemy ORM models
+│       ├── config.py     # Pydantic-settings configuration
 │       ├── schemas/      # Pydantic request/response schemas
 │       ├── services/     # Business logic layer
-│       ├── utils/        # Helpers & utilities
+│       ├── logging/      # Structured logging
 │       └── main.py       # Application entry point
 │
 ├── ml/                   # Machine learning pipeline
@@ -151,19 +136,21 @@ AI-CyberShield/
 │   ├── training/         # Model training & hyperparameter tuning
 │   ├── inference/        # Prediction serving
 │   ├── evaluation/       # Model performance metrics
+│   ├── profiling/        # Dataset profiling & visualization
 │   └── artifacts/        # Serialized models & scalers
 │
-├── frontend/             # React dashboard (coming soon)
-├── datasets/             # Dataset storage
-├── notebooks/            # Jupyter notebooks for exploration
+├── frontend/             # Threat detection dashboard (HTML/CSS/JS)
+├── configs/              # YAML configuration files
+├── datasets/             # Dataset storage (raw & processed)
 ├── tests/                # Unit & integration tests
-├── docs/                 # Documentation
-├── scripts/              # Utility scripts
+├── docs/                 # Architecture, ADRs, milestone reviews
+├── scripts/              # Utility & diagnostic scripts
 ├── docker/               # Docker configuration files
-├── .github/              # GitHub Actions workflows
+├── .github/              # Issue templates, PR templates, labels
 │
 ├── requirements.txt      # Python dependencies
 ├── pyproject.toml        # Build & tool configuration
+├── Makefile              # Development workflow commands
 ├── .gitignore            # Git ignore rules
 ├── README.md             # This file
 └── LICENSE               # MIT License
@@ -175,15 +162,14 @@ AI-CyberShield/
 
 ### Prerequisites
 
-- **Python 3.12+**
-- **PostgreSQL 15+** (optional for local development)
+- **Python 3.12+** (developed on 3.13)
 - **Docker** (recommended for containerized setup)
 
 ### Local Setup
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/AI-CyberShield.git
+git clone https://github.com/SwastikPandey1024/AI-CyberShield.git
 cd AI-CyberShield
 
 # 2. Create a virtual environment
@@ -199,9 +185,11 @@ pip install -e ".[dev]"
 
 # 5. Set up environment variables
 cp .env.example .env
-# Edit .env with your database credentials
 
-# 6. Run the application
+# 6. Train the model (if model.pkl is not present)
+python -m ml.training.train_ensembles
+
+# 7. Run the application
 uvicorn backend.app.main:app --reload
 ```
 
@@ -214,53 +202,56 @@ docker-compose up --build
 # Services:
 # - API: http://localhost:8000
 # - Dashboard: http://localhost:3000
-# - PostgreSQL: localhost:5432
 ```
 
 ---
 
 ## 🚀 Usage
 
-> **Note:** The MVP is currently in development. Usage instructions will be updated as features are implemented.
-
-### API Endpoints (Coming Soon)
+### API Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| `POST` | `/api/v1/predict` | Submit network flow features for threat prediction |
-| `POST` | `/api/v1/predict/batch` | Batch prediction for multiple flows |
-| `GET`  | `/api/v1/history` | Retrieve prediction history with pagination |
-| `GET`  | `/api/v1/metrics` | View model performance metrics |
-| `GET`  | `/api/v1/health` | Health check endpoint |
+| `POST` | `/api/v1/predict/single` | Classify a single network flow |
+| `POST` | `/api/v1/predict/batch` | Batch prediction (up to 1,000 flows) |
+| `GET`  | `/api/v1/predict/model/info` | Get loaded model metadata |
+| `GET`  | `/health` | Health check (liveness probe) |
+| `GET`  | `/ready` | Readiness probe (model loaded) |
 
-### Example Prediction Request (Future)
+### Example Prediction Request
 
-```json
-{
-  "features": {
-    "destination_port": 443,
-    "flow_duration": 123456,
-    "total_fwd_packets": 10,
-    "total_backward_packets": 8,
-    "packet_length_mean": 520.5,
-    "packet_length_std": 120.3,
-    "fwd_packet_length_mean": 480.2,
-    "bwd_packet_length_mean": 560.8,
-    "flow_bytes_per_sec": 4500.0,
-    "flow_packets_per_sec": 12.5
-  }
-}
+```bash
+curl -X POST http://localhost:8000/api/v1/predict/single \
+  -H "Content-Type: application/json" \
+  -d '{
+    "features": {
+      "Destination Port": 443,
+      "Flow Duration": 123456,
+      "Total Fwd Packets": 10,
+      "Total Backward Packets": 8,
+      "Flow Bytes/s": 4500.0,
+      "Flow Packets/s": 12.5,
+      "SYN Flag Count": 1,
+      "ACK Flag Count": 1
+    }
+  }'
 ```
 
-### Example Response (Future)
+### Example Response
 
 ```json
 {
-  "prediction": "Benign",
+  "predicted_class": "BENIGN",
+  "predicted_index": 0,
   "confidence": 0.987,
-  "threat_score": 0.013,
-  "processing_time_ms": 45.2,
-  "model_version": "0.1.0"
+  "is_attack": false,
+  "top_k": [
+    {"class_name": "BENIGN", "probability": 0.987},
+    {"class_name": "DoS", "probability": 0.008},
+    {"class_name": "PortScan", "probability": 0.003}
+  ],
+  "all_probabilities": { ... },
+  "model_run_id": "randomforest_milestone3"
 }
 ```
 
@@ -268,34 +259,33 @@ docker-compose up --build
 
 ## 🗺️ Roadmap
 
-### Phase 0 — Foundation (Current)
+### Phase 0 — Foundation ✅
 - [x] Project scaffolding and structure
 - [x] Development environment configuration
 - [x] Documentation framework
 
-### Phase 1 — ML Pipeline
-- [ ] Dataset preprocessing and cleaning
-- [ ] Feature engineering and selection
-- [ ] Model training with XGBoost
-- [ ] Model evaluation and artifact export
+### Phase 1 — ML Pipeline ✅
+- [x] Dataset preprocessing and cleaning
+- [x] Feature engineering and selection
+- [x] Model training (RandomForest + XGBoost)
+- [x] Model evaluation and artifact export
 
-### Phase 2 — API & Services
-- [ ] Prediction endpoints (single & batch)
-- [ ] History and metrics endpoints
-- [ ] Database schema and migrations
-- [ ] Unit tests and integration tests
+### Phase 2 — API & Services ✅
+- [x] Prediction endpoints (single & batch)
+- [x] Model info and health endpoints
+- [x] Unit tests and integration tests
 
-### Phase 3 — Dashboard
-- [ ] React application scaffold
-- [ ] Prediction form with real-time results
-- [ ] History table with filters
-- [ ] Charts and visualizations
+### Phase 3 — Dashboard ✅
+- [x] Threat detection dashboard
+- [x] Prediction form with preset attack vectors
+- [x] Real-time classification verdict display
+- [x] Security event audit log
 
-### Phase 4 — Polish
-- [ ] Comprehensive documentation
-- [ ] Docker Compose for one-command setup
+### Phase 4 — Polish (In Progress)
+- [x] Docker Compose for one-command setup
+- [x] Comprehensive documentation
 - [ ] CI/CD pipeline with GitHub Actions
-- [ ] Postman collection for API testing
+- [ ] Live packet sniffing and PCAP extraction
 
 See the full roadmap at [`docs/roadmap.md`](docs/roadmap.md).
 
@@ -307,20 +297,9 @@ See the full roadmap at [`docs/roadmap.md`](docs/roadmap.md).
 - **Kafka streaming** — Handle high-throughput data ingestion with message queuing
 - **SIEM integration** — Export alerts to Splunk, Elastic, or QRadar
 - **Threat intelligence feeds** — Enrich predictions with external threat data
-- **Multi-model ensemble** — Combine multiple algorithms for robust predictions
 - **Authentication & RBAC** — Secure API access with JWT-based authentication
 - **Kubernetes deployment** — Scale horizontally with container orchestration
-
----
-
-## 📸 Screenshots
-
-> *Screenshots will be added as the dashboard is developed.*
-
-<!-- Placeholder for dashboard screenshot -->
-<p align="center">
-  <em>Dashboard preview coming soon.</em>
-</p>
+- **PostgreSQL** — Persistent storage for prediction history and metrics
 
 ---
 
@@ -332,10 +311,10 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## 👤 Author
 
-**AI CyberShield Team**
+**Swastik Pandey**
 
 - GitHub: [@SwastikPandey1024](https://github.com/SwastikPandey1024)
-- Project Link: [https://github.com/SwastikPandey1024/ai-cybershield](https://github.com/SwastikPandey1024/ai-cybershield)
+- Project Link: [https://github.com/SwastikPandey1024/AI-CyberShield](https://github.com/SwastikPandey1024/AI-CyberShield)
 
 ---
 

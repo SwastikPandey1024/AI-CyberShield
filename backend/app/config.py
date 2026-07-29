@@ -47,8 +47,8 @@ class Settings(BaseSettings):
     # ──────────────────────────────────────────────
     # Model Settings
     # ──────────────────────────────────────────────
-    model_path: str = "./ml/artifacts/model.pkl"
-    model_type: str = "xgboost"
+    model_path: str = "./ml/artifacts/models/model.pkl"
+    model_type: str = "randomforest"
     model_version: str = "0.1.0"
     model_threshold: float = 0.5
     model_device: str = "cpu"

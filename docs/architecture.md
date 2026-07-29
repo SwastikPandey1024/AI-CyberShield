@@ -42,7 +42,7 @@
 ## Layer Responsibilities
 
 ### 1. Presentation Layer (Frontend)
-- React + TypeScript + Tailwind CSS dashboard
+- HTML/CSS/JS threat detection dashboard
 - Communicates with backend via REST API
 - Visualizes predictions, history, and metrics
 - Provides real-time threat monitoring interface
