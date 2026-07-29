@@ -4,17 +4,12 @@ Predictor
 
 Production inference layer for the AI CyberShield model.
 
-Wraps the trained XGBoost booster + fitted RobustScaler into a single
+Wraps the trained model (RandomForest/XGBoost) + fitted RobustScaler into a single
 ``Predictor`` object that the FastAPI backend instantiates once at startup
 and reuses for all requests.
 
-Thread-safety: XGBoost prediction is read-only (no state mutation).
+Thread-safety: Model prediction is read-only (no state mutation).
 The ``Predictor`` instance is safe to share across async request handlers.
-
-Args flow:
-    raw feature dict  →  DataFrame  →  scale  →  DMatrix  →  predict
-                      ↓
-    PredictionResult(predicted_class, confidence, top_k_probs)
 """
 
 from __future__ import annotations
@@ -28,7 +23,6 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
-import xgboost as xgb
 from sklearn.preprocessing import RobustScaler
 
 logger = logging.getLogger(__name__)
@@ -40,12 +34,12 @@ class PredictionResult:
     Output of a single-sample prediction.
 
     Attributes:
-        predicted_class:  String name of the predicted attack category.
-        predicted_index:  Integer class index.
-        confidence:       Probability of the predicted class (0–1).
-        top_k:            List of (class_name, probability) for top-k classes.
+        predicted_class:   String name of the predicted attack category.
+        predicted_index:   Integer class index.
+        confidence:        Probability of the predicted class (0–1).
+        top_k:             List of (class_name, probability) for top-k classes.
         all_probabilities: Dict mapping class name → probability for all classes.
-        is_attack:        True if predicted_class != 'BENIGN'.
+        is_attack:         True if predicted_class != 'BENIGN'.
     """
 
     predicted_class: str
@@ -58,16 +52,10 @@ class PredictionResult:
 
 class Predictor:
     """
-    Production-ready inference wrapper combining booster + scaler + metadata.
+    Production-ready inference wrapper combining model + scaler + metadata.
 
-    Loads all artefacts from the ``artifact_dir`` (using ``latest.json`` to
-    locate the current run), applies the fitted RobustScaler, and returns
-    structured ``PredictionResult`` objects.
-
-    Args:
-        artifact_dir:  Root of ``ml/artifacts/``.
-        processed_dir: Root of ``datasets/processed/CICIDS2017/`` (for scaler).
-        top_k:         Number of top classes to include in result.
+    Loads artifacts from ``ml/artifacts/models/`` and ``datasets/processed/CICIDS2017/``,
+    applies the fitted RobustScaler, and returns structured ``PredictionResult`` objects.
     """
 
     def __init__(
@@ -81,42 +69,62 @@ class Predictor:
 
     def _load(self, artifact_dir: Path, processed_dir: Path) -> None:
         """Load model, scaler, and metadata from disk."""
-        # Resolve run directory from latest.json
-        latest_path = artifact_dir / "latest.json"
-        if not latest_path.exists():
+        models_dir = artifact_dir / "models"
+        model_path = models_dir / "model.pkl"
+        feature_names_path = models_dir / "feature_names.json"
+        meta_path = processed_dir / "feature_meta.json"
+        scaler_path = processed_dir / "scaler.pkl"
+
+        if not model_path.exists():
+            # Check latest.json fallback if available
+            latest_path = artifact_dir / "latest.json"
+            if latest_path.exists():
+                latest = json.loads(latest_path.read_text(encoding="utf-8"))
+                model_path = Path(latest["model_path"])
+
+        if not model_path.exists():
             raise FileNotFoundError(
-                f"No trained model found. Run `python -m ml.training.run_training` first. "
-                f"Expected: {latest_path}"
+                f"No trained model found at {model_path}. "
+                "Run `python -m ml.training.train_ensembles` to train and save the model."
             )
 
-        latest = json.loads(latest_path.read_text(encoding="utf-8"))
-        run_id = latest["run_id"]
-        run_dir = artifact_dir / run_id
-        model_path = Path(latest["model_path"])
-
         logger.info("Loading model from: %s", model_path)
-        self._booster = xgb.Booster()
-        self._booster.load_model(str(model_path))
+        with open(model_path, "rb") as fh:
+            self._model = pickle.load(fh)
 
-        # Load metadata
-        meta = json.loads((run_dir / "model_meta.json").read_text(encoding="utf-8"))
-        self._feature_names: list[str] = meta["feature_names"]
-        self._label_names: dict[int, str] = {
-            int(k): v for k, v in meta["label_names"].items()
-        }
-        self._n_classes: int = meta["n_classes"]
-        self.run_id = run_id
-        self.model_version = meta.get("hyperparameters", {}).get("num_boost_round", "?")
+        # Load feature names
+        if feature_names_path.exists():
+            fn_payload = json.loads(feature_names_path.read_text(encoding="utf-8"))
+            self._feature_names: list[str] = fn_payload["feature_names"]
+        else:
+            raise FileNotFoundError(f"Feature names file missing: {feature_names_path}")
+
+        # Load metadata / label names
+        if meta_path.exists():
+            meta = json.loads(meta_path.read_text(encoding="utf-8"))
+            self._label_names: dict[int, str] = {
+                int(k): v for k, v in meta["label_names"].items()
+            }
+        else:
+            # Default CICIDS2017 8-class mapping
+            self._label_names = {
+                0: "BENIGN", 1: "DoS", 2: "DDoS", 3: "PortScan",
+                4: "BruteForce", 5: "WebAttack", 6: "Botnet", 7: "Infiltration"
+            }
+
+        self._n_classes: int = len(self._label_names)
+        self.run_id = "randomforest_milestone3"
 
         # Load scaler
-        scaler_path = processed_dir / "scaler.pkl"
         logger.info("Loading scaler from: %s", scaler_path)
+        if not scaler_path.exists():
+            raise FileNotFoundError(f"Scaler file missing: {scaler_path}")
         with open(scaler_path, "rb") as fh:
             self._scaler: RobustScaler = pickle.load(fh)
 
         logger.info(
             "Predictor ready. Run=%s  Classes=%d  Features=%d",
-            run_id, self._n_classes, len(self._feature_names),
+            self.run_id, self._n_classes, len(self._feature_names),
         )
 
     def predict(self, features: dict[str, Any]) -> PredictionResult:
@@ -130,28 +138,26 @@ class Predictor:
         Returns:
             ``PredictionResult`` with predicted class and probabilities.
         """
-        # Build DataFrame aligned to training feature order
         row = {col: features.get(col, 0.0) for col in self._feature_names}
         X = pd.DataFrame([row], columns=self._feature_names)
-
-        # Scale
         X_scaled = self._scaler.transform(X)
+        X_scaled_df = pd.DataFrame(X_scaled, columns=self._feature_names)
 
-        # Predict
-        dmatrix = xgb.DMatrix(data=X_scaled, feature_names=self._feature_names)
-        proba = self._booster.predict(dmatrix)[0]  # shape: (n_classes,)
+        if hasattr(self._model, "predict_proba"):
+            proba = self._model.predict_proba(X_scaled_df)[0]
+        else:
+            pred = self._model.predict(X_scaled_df)[0]
+            proba = np.zeros(self._n_classes)
+            proba[pred] = 1.0
 
         pred_idx = int(np.argmax(proba))
         pred_class = self._label_names.get(pred_idx, "Unknown")
         confidence = float(proba[pred_idx])
 
-        # All probabilities
         all_probs = {
             self._label_names.get(i, str(i)): float(p)
             for i, p in enumerate(proba)
         }
-
-        # Top-k
         sorted_probs = sorted(all_probs.items(), key=lambda x: x[1], reverse=True)
         top_k = sorted_probs[: self.top_k]
 
@@ -170,12 +176,6 @@ class Predictor:
     ) -> list[PredictionResult]:
         """
         Predict attack categories for a batch of network flows.
-
-        Args:
-            features_list: List of feature dicts, one per flow.
-
-        Returns:
-            List of ``PredictionResult`` in the same order.
         """
         rows = [
             {col: f.get(col, 0.0) for col in self._feature_names}
@@ -183,8 +183,15 @@ class Predictor:
         ]
         X = pd.DataFrame(rows, columns=self._feature_names)
         X_scaled = self._scaler.transform(X)
-        dmatrix = xgb.DMatrix(data=X_scaled, feature_names=self._feature_names)
-        proba_batch = self._booster.predict(dmatrix)  # shape: (n_samples, n_classes)
+        X_scaled_df = pd.DataFrame(X_scaled, columns=self._feature_names)
+
+        if hasattr(self._model, "predict_proba"):
+            proba_batch = self._model.predict_proba(X_scaled_df)
+        else:
+            preds = self._model.predict(X_scaled_df)
+            proba_batch = np.zeros((len(preds), self._n_classes))
+            for i, p in enumerate(preds):
+                proba_batch[i, p] = 1.0
 
         results: list[PredictionResult] = []
         for proba in proba_batch:

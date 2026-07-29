@@ -47,7 +47,7 @@ class FlowFeatures(BaseModel):
         """Return all fields (named + extra) as a flat dict."""
         result = {}
         # Named fields
-        for field_name, field_info in self.model_fields.items():
+        for field_name, field_info in self.__class__.model_fields.items():
             val = getattr(self, field_name)
             if val is not None:
                 alias = field_info.alias or field_name

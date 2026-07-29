@@ -11,7 +11,7 @@ from ml.inference.predictor import Predictor, PredictionResult
 
 logger = logging.getLogger(__name__)
 
-_PROJECT_ROOT = Path(__file__).resolve().parents[4]
+_PROJECT_ROOT = Path(__file__).resolve().parents[3]
 _ARTIFACT_DIR = _PROJECT_ROOT / "ml" / "artifacts"
 _PROCESSED_DIR = _PROJECT_ROOT / "datasets" / "processed" / "CICIDS2017"
 
