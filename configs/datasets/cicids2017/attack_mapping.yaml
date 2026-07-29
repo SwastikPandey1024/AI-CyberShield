@@ -31,6 +31,10 @@ label_to_category:
   Web Attack Brute Force: WebAttack
   Web Attack XSS: WebAttack
   Web Attack Sql Injection: WebAttack
+  "Web Attack \ufffd Brute Force": WebAttack
+  "Web Attack \ufffd XSS": WebAttack
+  "Web Attack \ufffd Sql Injection": WebAttack
+
   # Botnet
   Botnet: Botnet
   Bot: Botnet               # EDA Step 0: CSV uses 'Bot' not 'Botnet' — alias added 2026-07-29

@@ -1,5 +1,7 @@
 """Phase 2.5 — Evidence-Driven EDA: All diagnostic steps."""
-import csv, yaml, json
+import csv, yaml, json, sys
+sys.stdout.reconfigure(encoding='utf-8')
+
 from pathlib import Path
 from collections import Counter, defaultdict
 import pandas as pd
